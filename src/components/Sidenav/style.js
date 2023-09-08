@@ -9,7 +9,7 @@ export const Aside = styled.aside`
 
 export const Logo = styled.div`
     height: 12vh;
-    border-bottom: 1px solid #ecf0fa;
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: center;
