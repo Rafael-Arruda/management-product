@@ -5,6 +5,11 @@ export const Aside = styled.aside`
     background: var(--white);
 
     overflow: hidden;
+
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
 `;
 
 export const Logo = styled.div`
