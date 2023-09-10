@@ -11,7 +11,7 @@ export default function PageHeader() {
     return(
         <Container>
             <div>
-                <Title>Empty</Title>
+                <Title>Vazio</Title>
                 <Breadcrumb breadItens={['Home', 'Vazio']}/>    
             </div>
             <div className="btn-area">
