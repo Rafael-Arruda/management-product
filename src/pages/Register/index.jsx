@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useState, useContext} from "react";
+
+import { AuthContext } from "../../contexts/auth";
 
 import {MdEmail, MdLock, MdPerson} from 'react-icons/md';
 
@@ -16,24 +18,56 @@ import {
 import logo from '../../assets/logo-zanex.png';
 
 function Register() {
+
+    const {handleRegister} = useContext(AuthContext);
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    function handleForm(event) {
+        event.preventDefault();
+
+        handleRegister({name, email, password});
+
+        setName('');
+        setEmail('');
+        setPassword('');
+    }
+
     return(
         <LoginPage>
             <Logo src={logo} alt="logo"/>
             <ContainerLogin>
-                <Form>
+                <Form onSubmit={handleForm}>
                     <FormTitle>Cadastro</FormTitle>
                     
                     <Input type="text">
                         <MdPerson size={18} color="#6c757d"/>
-                        <input type="text" placeholder="Nome completo"/>
+                        <input 
+                            type="text" 
+                            placeholder="Nome completo"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
                     </Input>
                     <Input type="email">
                         <MdEmail size={18} color="#6c757d"/>
-                        <input type="email" placeholder="Email"/>
+                        <input 
+                            type="email" 
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                     </Input>
                     <Input type="password">
                         <MdLock size={18} color="#6c757d"/>
-                        <input type="password" placeholder="Senha"/>
+                        <input 
+                            type="password" 
+                            placeholder="Senha"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
                     </Input>
                     
                     <Button>Cadastrar-se</Button>
