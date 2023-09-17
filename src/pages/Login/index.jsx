@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 import {MdEmail, MdLock} from 'react-icons/md';
 
 import {
@@ -9,7 +11,7 @@ import {
     Form,
     FormTitle,
     Input,
-    Link,
+    BoxLink,
     Button
 } from './style';
 
@@ -32,16 +34,16 @@ function Login() {
                         <input type="password" placeholder="Senha"/>
                     </Input>
                     
-                    <Link textalign="right">
+                    <BoxLink textalign="right">
                         <a href="#">Esqueceu sua senha?</a>
-                    </Link>
+                    </BoxLink>
                     
                     <Button>Entrar</Button>
                     
-                    <Link textalign="center">
+                    <BoxLink textalign="center">
                         <span>Não é um membro? </span>
-                        <a href="#">Criar uma Conta</a>
-                    </Link>
+                        <Link to="/register">Criar uma conta</Link>
+                    </BoxLink>
                 </Form>
             </ContainerLogin>
         </LoginPage>

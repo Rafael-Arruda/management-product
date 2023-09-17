@@ -52,7 +52,7 @@ export const Input = styled.div`
     }
 `;
 
-export const Link = styled.div`
+export const BoxLink = styled.div`
     margin-top: 10px;
     text-align: ${props => props.textalign? props.textalign : 'center'};
     font-size: 14px;

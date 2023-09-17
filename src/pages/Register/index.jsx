@@ -1,5 +1,7 @@
 import React, {useState, useContext} from "react";
 
+import { Link } from "react-router-dom";
+
 import { AuthContext } from "../../contexts/auth";
 
 import {MdEmail, MdLock, MdPerson} from 'react-icons/md';
@@ -11,7 +13,7 @@ import {
     Form,
     FormTitle,
     Input,
-    Link,
+    BoxLink,
     Button
 } from './style';
 
@@ -72,10 +74,10 @@ function Register() {
                     
                     <Button>Cadastrar-se</Button>
                     
-                    <Link textalign="center">
+                    <BoxLink textalign="center">
                         <span>Já possui uma conta? </span>
-                        <a href="#">Entrar</a>
-                    </Link>
+                        <Link to="/login">Entrar</Link>
+                    </BoxLink>
                 </Form>
             </ContainerLogin>
         </LoginPage>
