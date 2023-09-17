@@ -12,10 +12,12 @@ export const Container = styled.div`
         gap: 16px;
     }
 
-    .btn-area a {
+    .btn-area button {
         color: var(--white);
         border-radius: 5px;
         padding: 0.6rem;
+
+        border: none;
 
         display: flex;
         align-items: center;

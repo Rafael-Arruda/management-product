@@ -45,11 +45,11 @@ function Login() {
             <ContainerLogin>
                 <Form onSubmit={handleForm}>
                     <FormTitle>Entrar</FormTitle>
-                    
+
                     <Input type="email">
                         <MdEmail size={18} color="#6c757d"/>
-                        <input 
-                            type="email" 
+                        <input
+                            type="email"
                             placeholder="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -57,20 +57,20 @@ function Login() {
                     </Input>
                     <Input type="password">
                         <MdLock size={18} color="#6c757d"/>
-                        <input 
-                            type="password" 
+                        <input
+                            type="password"
                             placeholder="Senha"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </Input>
-                    
+
                     <BoxLink textalign="right">
                         <a href="#">Esqueceu sua senha?</a>
                     </BoxLink>
-                    
+
                     <Button>Entrar</Button>
-                    
+
                     <BoxLink textalign="center">
                         <span>Não é um membro? </span>
                         <Link to="/register">Criar uma conta</Link>

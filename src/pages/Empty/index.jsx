@@ -16,7 +16,7 @@ export default function Empty() {
 
             <Content>
                 <PageHeader/>
-            </Content>    
+            </Content>
         </Container>
     )
 }

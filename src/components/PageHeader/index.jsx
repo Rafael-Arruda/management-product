@@ -7,22 +7,22 @@ import {Container} from './style';
 import Title from '../../components/Title';
 import Breadcrumb from '../../components/Breadcrumb';
 
-export default function PageHeader() {
+export default function PageHeader( {titulo, adicionar, exportar, onClick } ) {
     return(
         <Container>
             <div>
-                <Title>Vazio</Title>
-                <Breadcrumb breadItens={['Home', 'Vazio']}/>    
+                <Title>{titulo}</Title>
+                <Breadcrumb breadItens={['Home', 'Vazio']}/>
             </div>
             <div className="btn-area">
-                <a className="add-btn" href="#">
+                <button className="add-btn" onClick={onClick}>
                     <MdAdd size={18} color="#fff"/>
-                    <span>Adicionar Conta</span>
-                </a>
-                <a className="export-btn" href="#">
+                    <span>{adicionar}</span>
+                </button>
+                <button className="export-btn" >
                     <MdOutlineFileDownload size={18} color="#fff"/>
-                    <span>Exportar</span>
-                </a>
+                    <span>{exportar}</span>
+                </button>
             </div>
         </Container>
     )
