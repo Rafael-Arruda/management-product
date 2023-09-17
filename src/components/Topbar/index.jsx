@@ -11,17 +11,14 @@ import {
 } from './style';
 
 import imgProfile from '../../assets/profile_img.jpg';
-
 import { MdSearch, MdOutlinePerson } from 'react-icons/md';
 
-import { UserContext } from "../../contexts/user";
+import { AuthContext } from "../../contexts/auth";
 
 export default function Topbar() {
 
-    const { userData, setUserData } = useContext(UserContext);
-
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
-
     const [showMenuProfile, setShowMenuProfile] = useState(false);
 
     function handleShowMenuProfile() {
@@ -30,8 +27,6 @@ export default function Topbar() {
 
     function handleSignOut() {
         localStorage.removeItem('user');
-        setUserData({});
-
         navigate("/login");
     }
 
@@ -52,7 +47,7 @@ export default function Topbar() {
                 {showMenuProfile && 
                 <DropdownProfile>                    
                     <div className="box-profile-info">
-                        <h5>{userData.name}</h5>
+                        <h5>{user.name}</h5>
                         <span>Administrator</span>
                     </div>
                     <a href="#">

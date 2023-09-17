@@ -21,15 +21,15 @@ import logo from '../../assets/logo-zanex.png';
 
 function Login() {
 
-    const { handleLogin } = useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleForm(event) {
+    function handleSignIn(event) {
         event.preventDefault();
 
-        handleLogin({email, password})
+        signIn({email, password})
 
         setEmail('');
         setPassword('');
@@ -39,7 +39,7 @@ function Login() {
         <LoginPage>
             <Logo src={logo} alt="logo"/>
             <ContainerLogin>
-                <Form onSubmit={handleForm}>
+                <Form onSubmit={handleSignIn}>
                     <FormTitle>Entrar</FormTitle>
                     
                     <Input type="email">

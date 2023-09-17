@@ -1,7 +1,6 @@
-import {createContext, useContext} from 'react';
+import { useState, createContext, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import api from '../../services/api';
-import { UserContext } from '../user';
 
 import { toast } from 'react-toastify';
 
@@ -9,40 +8,65 @@ export const AuthContext = createContext({});
 
 function AuthProvider({children}) {
 
-    const {userData, setUserData} = useContext(UserContext);
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
 
-    async function handleRegister(data) {
+    useEffect(() => {
+        async function loadUser() {
+            const storageUser = localStorage.getItem('user');
+
+            if(storageUser) {
+                setUser(JSON.parse(storageUser));
+                setLoading(false);
+            }
+
+            setLoading(false);
+        }
+
+        loadUser();
+    }, [])
+
+    async function signUp(data) {
         const response = await api.post('/auth/register', {
             "name": data.name,
             "email": data.email,
             "password": data.password,
         })
         toast.success('Cadastro realizado com sucesso!');
+        navigate("/login");
     }
 
-    async function handleLogin(data) {
+    async function signIn(data) {
         await api.post('/auth/login', {
             "email": data.email,
             "password": data.password,
         })
         .then((value) => {
-            setUserData(value.data.user);
+            console.log(value.data.user)
+            setUser(value.data.user);
+            storageUser(value.data.user);
             toast.success('Seja bem vindo, ' + value.data.user.name + "!");
-            return navigate('/empty');
+            navigate('/empty');
         })
         .catch((error) => {
             toast.error('Email ou senha incorreto!')
             return null;
         })
-       
+    }
+
+    function storageUser(data) {
+        localStorage.setItem('user', JSON.stringify(data));
     }
 
     return(
         <AuthContext.Provider value={{
-            handleRegister,
-            handleLogin
+            signed: !!user,
+            user,
+            loading,
+            signIn,
+            signUp
         }}>
             {children}
         </AuthContext.Provider>

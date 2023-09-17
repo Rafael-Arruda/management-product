@@ -1,8 +1,7 @@
 import React from "react"
 
-import RoutesApp from "./routes"
+import RoutesApp from "./routes";
 import AuthProvider from "./contexts/auth";
-import UserProvider from "./contexts/user";
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -15,11 +14,9 @@ function App() {
     
       <ToastContainer autoClose={3000}/>
 
-      <UserProvider>
-        <AuthProvider>
-          <RoutesApp/>
-        </AuthProvider>
-      </UserProvider>
+      <AuthProvider>
+        <RoutesApp/>
+      </AuthProvider>
     
     </BrowserRouter>
   )
