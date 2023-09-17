@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/auth";
 
+import { toast } from 'react-toastify';
+
 import {MdEmail, MdLock, MdPerson} from 'react-icons/md';
 
 import {
@@ -30,6 +32,11 @@ function Register() {
     function handleSignUp(event) {
         event.preventDefault();
 
+        if(password.length < 6) {
+            toast.warning('A senha deve conter no mínimo 6 caracteres!')
+            return
+        }
+
         signUp({name, email, password});
 
         setName('');
@@ -48,6 +55,7 @@ function Register() {
                     <Input type="text">
                         <MdPerson size={18} color="#6c757d"/>
                         <input 
+                            required
                             type="text" 
                             placeholder="Nome completo"
                             value={name}
@@ -57,6 +65,7 @@ function Register() {
                     <Input type="email">
                         <MdEmail size={18} color="#6c757d"/>
                         <input 
+                            required
                             type="email" 
                             placeholder="Email"
                             value={email}
@@ -66,6 +75,7 @@ function Register() {
                     <Input type="password">
                         <MdLock size={18} color="#6c757d"/>
                         <input 
+                            required
                             type="password" 
                             placeholder="Senha"
                             value={password}

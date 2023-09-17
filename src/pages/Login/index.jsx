@@ -45,6 +45,7 @@ function Login() {
                     <Input type="email">
                         <MdEmail size={18} color="#6c757d"/>
                         <input 
+                            required
                             type="email" 
                             placeholder="Email"
                             value={email}
@@ -54,6 +55,7 @@ function Login() {
                     <Input type="password">
                         <MdLock size={18} color="#6c757d"/>
                         <input 
+                            required
                             type="password" 
                             placeholder="Senha"
                             value={password}
