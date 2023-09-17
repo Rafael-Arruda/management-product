@@ -4,7 +4,7 @@ export const Header = styled.header`
     background-color: var(--white);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
    
     width: calc(100vw - 260px);
     height: 12vh;
@@ -18,32 +18,32 @@ export const Header = styled.header`
     left: 260px;
 `;
 
-export const Search = styled.div`
-    border: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 350px;
-    height: 40px;
-    border-radius: 20px;
-    padding: 16px 24px;
+// export const Search = styled.div`
+//     border: 1px solid var(--border-color);
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     width: 350px;
+//     height: 40px;
+//     border-radius: 20px;
+//     padding: 16px 24px;
 
-    input {
-        width: 100%;
-        border: none;
-        font-size: 16px;
-        color: #4d5875;
-    }
-    input::placeholder {
-        color: #4d5875;
-    }
+//     input {
+//         width: 100%;
+//         border: none;
+//         font-size: 16px;
+//         color: #4d5875;
+//     }
+//     input::placeholder {
+//         color: #4d5875;
+//     }
 
-    button {
-        padding: 5px;
-        background: none;
-        border: none;
-    }
-`;
+//     button {
+//         padding: 5px;
+//         background: none;
+//         border: none;
+//     }
+// `;
 
 export const Profile = styled.button`
     border: none;

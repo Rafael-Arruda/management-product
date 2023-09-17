@@ -8,16 +8,14 @@ import Empty from "./pages/Empty";
 
 function RoutesApp() {
     return(
-        <BrowserRouter>
-            <Routes>
-
-                <Route path="/" element={ <Home/> }/>
-                <Route path="/login" element={ <Login/> }/>
-                <Route path="/register" element={ <Register/> }/>
-                <Route path="/empty" element={ <Empty/> }/> 
-
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            
+            <Route path="/" element={ <Home/> }/>
+            <Route path="/login" element={ <Login/> }/>
+            <Route path="/register" element={ <Register/> }/>
+            <Route path="/empty" element={ <Empty/> }/> 
+            
+        </Routes>
     )
 }
 
