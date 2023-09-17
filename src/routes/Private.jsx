@@ -4,8 +4,7 @@ import { AuthContext } from '../contexts/auth';
 
 export default function Private({children}) {
     const { signed, loading } = useContext(AuthContext);
-    console.log(signed)
-
+    
     if(loading) {
         return(
             <div></div>

@@ -9,6 +9,8 @@ export const AuthContext = createContext({});
 function AuthProvider({children}) {
 
     const [user, setUser] = useState(null);
+    const [userAuthorization, setUserAuthorization] = useState(null);
+
     const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
@@ -44,8 +46,8 @@ function AuthProvider({children}) {
             "password": data.password,
         })
         .then((value) => {
-            console.log(value.data.user)
             setUser(value.data.user);
+            setUserAuthorization(value.data.authorization);
             storageUser(value.data.user);
             toast.success('Seja bem vindo, ' + value.data.user.name + "!");
             navigate('/empty');
@@ -56,6 +58,11 @@ function AuthProvider({children}) {
         })
     }
 
+    function logout() {
+        localStorage.removeItem('user');
+        navigate("/login");
+    }
+
     function storageUser(data) {
         localStorage.setItem('user', JSON.stringify(data));
     }
@@ -64,9 +71,11 @@ function AuthProvider({children}) {
         <AuthContext.Provider value={{
             signed: !!user,
             user,
+            userAuthorization,
             loading,
             signIn,
-            signUp
+            signUp,
+            logout
         }}>
             {children}
         </AuthContext.Provider>

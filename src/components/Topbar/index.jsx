@@ -17,7 +17,7 @@ import { AuthContext } from "../../contexts/auth";
 
 export default function Topbar() {
 
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     const navigate = useNavigate();
     const [showMenuProfile, setShowMenuProfile] = useState(false);
 
@@ -25,9 +25,8 @@ export default function Topbar() {
         setShowMenuProfile(!showMenuProfile);
     }
 
-    function handleSignOut() {
-        localStorage.removeItem('user');
-        navigate("/login");
+    function handleLogout() {
+        logout();
     }
 
     return(
@@ -62,7 +61,7 @@ export default function Topbar() {
                         <MdOutlinePerson size={20} color="#000"/>
                         <span>Configurações</span>
                     </a>
-                    <a onClick={handleSignOut}>
+                    <a onClick={handleLogout}>
                         <MdOutlinePerson size={20} color="#000"/>
                         <span>Sair</span>
                     </a>    
