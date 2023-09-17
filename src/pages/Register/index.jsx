@@ -1,6 +1,6 @@
 import React, {useState, useContext} from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/auth";
 
@@ -27,6 +27,8 @@ function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
     function handleForm(event) {
         event.preventDefault();
 
@@ -35,6 +37,8 @@ function Register() {
         setName('');
         setEmail('');
         setPassword('');
+
+        return navigate("/login");
     }
 
     return(
