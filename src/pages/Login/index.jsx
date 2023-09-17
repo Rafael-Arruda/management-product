@@ -21,7 +21,7 @@ import logo from '../../assets/logo-zanex.png';
 
 function Login() {
 
-    const { signIn } = useContext(AuthContext);
+    const { signIn, loadingAuth } = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -67,7 +67,7 @@ function Login() {
                         <a href="#">Esqueceu sua senha?</a>
                     </BoxLink>
                     
-                    <Button>Entrar</Button>
+                    <Button>{loadingAuth? <span>Carregando...</span> : <span>Entrar</span>}</Button>
                     
                     <BoxLink textalign="center">
                         <span>Não é um membro? </span>

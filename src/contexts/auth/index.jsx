@@ -12,6 +12,7 @@ function AuthProvider({children}) {
     const [userAuthorization, setUserAuthorization] = useState(null);
 
     const [loading, setLoading] = useState(true);
+    const [loadingAuth, setLoadingAuth] = useState(false);
 
     const navigate = useNavigate();
 
@@ -31,16 +32,19 @@ function AuthProvider({children}) {
     }, [])
 
     async function signUp(data) {
+        setLoadingAuth(true);
         const response = await api.post('/auth/register', {
             "name": data.name,
             "email": data.email,
             "password": data.password,
         })
         toast.success('Cadastro realizado com sucesso!');
+        setLoadingAuth(false);
         navigate("/login");
     }
 
     async function signIn(data) {
+        setLoadingAuth(true);
         await api.post('/auth/login', {
             "email": data.email,
             "password": data.password,
@@ -50,10 +54,12 @@ function AuthProvider({children}) {
             setUserAuthorization(value.data.authorization);
             storageUser(value.data.user);
             toast.success('Seja bem vindo, ' + value.data.user.name + "!");
+            setLoadingAuth(false);
             navigate('/empty');
         })
         .catch((error) => {
-            toast.error('Email ou senha incorreto!')
+            toast.error('Email ou senha incorreto!');
+            setLoadingAuth(false);
             return null;
         })
     }
@@ -73,6 +79,7 @@ function AuthProvider({children}) {
             user,
             userAuthorization,
             loading,
+            loadingAuth,
             signIn,
             signUp,
             logout

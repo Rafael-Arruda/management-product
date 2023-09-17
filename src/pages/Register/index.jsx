@@ -23,7 +23,7 @@ import logo from '../../assets/logo-zanex.png';
 
 function Register() {
 
-    const { signUp } = useContext(AuthContext);
+    const { signUp, loadingAuth } = useContext(AuthContext);
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -83,7 +83,7 @@ function Register() {
                         />
                     </Input>
                     
-                    <Button>Cadastrar-se</Button>
+                    <Button>{loadingAuth? <span>Carregando...</span> : <span>Cadastrar-se</span>}</Button>
                     
                     <BoxLink textalign="center">
                         <span>Já possui uma conta? </span>
