@@ -10,7 +10,7 @@ import {
     DropdownProfile 
 } from './style';
 
-import imgProfile from '../../assets/profile_img.jpg';
+import imgAvatar from '../../assets/avatar.png';
 import { MdSearch, MdOutlinePerson } from 'react-icons/md';
 
 import { AuthContext } from "../../contexts/auth";
@@ -40,7 +40,7 @@ export default function Topbar() {
             
            <Menu>
                 <Profile onClick={handleShowMenuProfile}>
-                    <img src={imgProfile} alt="imagem de perfil" />
+                    <img src={imgAvatar} alt="imagem de perfil" />
                 </Profile>
 
                 {showMenuProfile && 
