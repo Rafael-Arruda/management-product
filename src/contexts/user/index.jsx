@@ -11,10 +11,10 @@ function UserProvider({children}) {
 
     useEffect(() => {
         const user = localStorage.getItem('user');
-
-        if(!user) {
+        if(user) {
             setUserData(JSON.parse(user));
-        }else {
+        }
+        else {
             navigate('/login');
         }
     } , []);

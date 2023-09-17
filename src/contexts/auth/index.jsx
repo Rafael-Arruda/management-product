@@ -1,14 +1,17 @@
 import {createContext, useContext} from 'react';
-
+import {useNavigate} from 'react-router-dom';
 import api from '../../services/api';
-
 import { UserContext } from '../user';
+
+import { toast } from 'react-toastify';
 
 export const AuthContext = createContext({});
 
 function AuthProvider({children}) {
 
-    const {setUserData} = useContext(UserContext);
+    const {userData, setUserData} = useContext(UserContext);
+
+    const navigate = useNavigate();
 
     async function handleRegister(data) {
         const response = await api.post('/auth/register', {
@@ -16,16 +19,24 @@ function AuthProvider({children}) {
             "email": data.email,
             "password": data.password,
         })
+        toast.success('Cadastro realizado com sucesso!');
     }
 
     async function handleLogin(data) {
-        const response = await api.post('/auth/login', {
+        await api.post('/auth/login', {
             "email": data.email,
             "password": data.password,
         })
-
-        //console.log(response.data.user);
-        setUserData(response.data.user);
+        .then((value) => {
+            setUserData(value.data.user);
+            toast.success('Seja bem vindo, ' + value.data.user.name + "!");
+            return navigate('/empty');
+        })
+        .catch((error) => {
+            toast.error('Email ou senha incorreto!')
+            return null;
+        })
+       
     }
 
     return(

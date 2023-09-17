@@ -1,6 +1,6 @@
 import React, {useState, useContext} from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import {MdEmail, MdLock} from 'react-icons/md';
 
@@ -26,8 +26,6 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const navigate = useNavigate();
-
     function handleForm(event) {
         event.preventDefault();
 
@@ -35,8 +33,6 @@ function Login() {
 
         setEmail('');
         setPassword('');
-
-        return navigate("/empty")
     }
 
     return(
