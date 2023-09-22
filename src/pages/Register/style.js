@@ -49,6 +49,7 @@ export const Input = styled.div`
 
     input {
         border: 0;
+        background: transparent;
     }
 `;
 

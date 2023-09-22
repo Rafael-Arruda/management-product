@@ -44,14 +44,21 @@ export const NavSubMenu = styled.div`
     }
 `;
 
-export const NavTitle = styled.h3`
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 600;
-    color: #76839a;
+export const NavTitle = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 0 30px;
     margin-bottom: 10px;
-    opacity: 0.7;
+    cursor: pointer;
+
+    h3 {
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 600;
+        color: #76839a;
+        opacity: 0.7;
+    }
 `;
 
 export const NavItem = styled.div`
@@ -60,7 +67,7 @@ export const NavItem = styled.div`
     display: flex;
     align-items: center;
     gap: 5px;
-    padding: 8px 10px 8px 30px;
+    padding: 8px 10px 8px 50px;
     cursor: pointer;
     transition: 0.5s all;
     

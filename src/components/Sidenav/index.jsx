@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
+
+import { AuthContext } from "../../contexts/auth";
 
 import logo from '../../assets/logo-dark-zanex.png';
 
@@ -9,7 +11,9 @@ import {MdHome,
     MdEditDocument,
     MdStorage,
     MdMoneyOff,
-    MdSettings
+    MdSettings,
+    MdKeyboardArrowRight,
+    MdKeyboardArrowDown,
 } from 'react-icons/md';
 
 import { 
@@ -22,67 +26,42 @@ import {
 } from './style';
 
 export default function Sidenav() {
+
+    const { userMenu } = useContext(AuthContext);
+
+    const [showMenus, setShowMenus] = useState(new Array(userMenu.length).fill(false));
+
+    function handleShowMenu(index) {
+        const newArray = [...showMenus];
+        newArray[index] = !newArray[index];
+
+        setShowMenus(newArray);
+    }
+
     return(
         <Aside>
             <Logo>
                 <img src={logo} alt="logo" />
             </Logo>
             <Nav>
-                <NavSubMenu>
-                    <NavTitle>principal</NavTitle>
-                    <NavItem>
-                        <MdHome size={18}/>
-                        <span>Home</span>
-                    </NavItem>
-                </NavSubMenu>
-                
-                <NavSubMenu>
-                    <NavTitle>cadastro</NavTitle>
-                    <NavItem>
-                        <MdPersonAdd size={18}/>
-                        <span>Clientes</span>
-                    </NavItem>
-                    <NavItem>
-                        <MdDesignServices size={18}/>
-                        <span>Serviços</span>
-                    </NavItem>
-                    <NavItem>
-                        <MdAppRegistration size={18}/>
-                        <span>Produtos</span>
-                    </NavItem>
-                </NavSubMenu>
-
-                <NavSubMenu>
-                    <NavTitle>Almoxarifado</NavTitle>
-                    <NavItem>
-                        <MdStorage size={18}/>
-                        <span>Estoque</span>
-                    </NavItem>
-                    <NavItem>
-                        <MdEditDocument size={18}/>
-                        <span>Relatórios</span>
-                    </NavItem>
-                </NavSubMenu>
-
-                <NavSubMenu>
-                    <NavTitle>Financeiro</NavTitle>
-                    <NavItem>
-                        <MdMoneyOff size={18}/>
-                        <span>Despesas</span>
-                    </NavItem>
-                    <NavItem>
-                        <MdEditDocument size={18}/>
-                        <span>Relatórios</span>
-                    </NavItem>
-                </NavSubMenu>
-
-                <NavSubMenu>
-                    <NavTitle>Configurações</NavTitle>
-                    <NavItem>
-                        <MdSettings size={18}/>
-                        <span>Editar Perfil</span>
-                    </NavItem>
-                </NavSubMenu>
+                {userMenu.map((item, index) => (
+                    <NavSubMenu key={item.id_menu_mnu}>
+                        <NavTitle onClick={() => handleShowMenu(index)}>
+                            <h3>{item.des_menu_mnu}</h3>
+                            {item.children?  
+                                showMenus[index]? <MdKeyboardArrowDown size={18} color="#76839a"/> : <MdKeyboardArrowRight size={18} color="#76839a"/>
+                                : 
+                                ""
+                            }
+                        </NavTitle>
+                        {item.children && item.children.map((value) => (
+                            showMenus[index] &&
+                            <NavItem key={value.id_menu_mnu}>
+                                <span>{value.des_menu_mnu}</span>
+                            </NavItem>
+                        ))}
+                    </NavSubMenu>
+                ))}
             </Nav>
         </Aside> 
     )

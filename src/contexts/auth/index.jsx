@@ -10,6 +10,7 @@ function AuthProvider({children}) {
 
     const [user, setUser] = useState(null);
     const [userAuthorization, setUserAuthorization] = useState(null);
+    const [userMenu, setUserMenu] = useState([]);
 
     const [loading, setLoading] = useState(true);
     const [loadingAuth, setLoadingAuth] = useState(false);
@@ -28,7 +29,16 @@ function AuthProvider({children}) {
             setLoading(false);
         }
 
+        async function loadUserMenu() {
+            const storageMenu = localStorage.getItem('menu');
+
+            if(storageMenu) {
+                setUserMenu(JSON.parse(storageMenu));
+            }
+        }
+
         loadUser();
+        loadUserMenu();
     }, [])
 
     async function signUp(data) {
@@ -52,7 +62,11 @@ function AuthProvider({children}) {
         .then((value) => {
             setUser(value.data.user);
             setUserAuthorization(value.data.authorization);
+            setUserMenu(value.data.menu);
+            
             storageUser(value.data.user);
+            storageUserMenu(value.data.menu);
+            
             toast.success('Seja bem vindo, ' + value.data.user.name + "!");
             setLoadingAuth(false);
             navigate('/empty');
@@ -73,6 +87,10 @@ function AuthProvider({children}) {
         localStorage.setItem('user', JSON.stringify(data));
     }
 
+    function storageUserMenu(data) {
+        localStorage.setItem('menu', JSON.stringify(data));
+    }
+
     return(
         <AuthContext.Provider value={{
             signed: !!user,
@@ -82,7 +100,9 @@ function AuthProvider({children}) {
             loadingAuth,
             signIn,
             signUp,
-            logout
+            logout,
+            userMenu, 
+            setUserMenu
         }}>
             {children}
         </AuthContext.Provider>
