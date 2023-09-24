@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Container, DeviderHorizontal, ModalHeader, StyledTable, TableCell, TableHeader } from './style';
+import { Container, DeviderHorizontal, ModalHeader, StyledTable, } from './style';
 
 import api from "../../services/api";
 
@@ -19,13 +19,22 @@ import {
     ButtonClose
 } from "./style";
 
+import TableHeader from "../../components/TableHeader";
+import TableRow from "../../components/TableRow";
+
 export default function Material() {
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const formattedDate = date.toLocaleDateString();
+        return formattedDate;
+    };
+
     const [isModalOpen, setModalOpen] = useState(false);
-    const [data, setData] = useState('');
-    const [material, setMaterial] = useState('');
-    const [id, setId] = useState()
-    const [dataCadastro, SetDataCadastro] = useState()
+    const [materials, setMaterials] = useState([]);
+    const [forMaterial, setFormMaterial] = useState({
+        description: '',
+    });
 
     const openModal = () => {
         setModalOpen(true);
@@ -35,32 +44,77 @@ export default function Material() {
         setModalOpen(false);
     };
 
-    function handleMaterialSubmit(e) {
-        e.preventDefault();
+    useEffect(() => {
+        fetchMaterials();
+      }, []);
 
-        materialAdd()
-        console.log('Material cadastrado:', material);
-        setMaterial('')
-    };
-
-    async function materialAdd() {
-        await api.post('/material', {
-            des_material_mte: material
-        })
+    async function fetchMaterials() {
+        try {
+        const response = await api.get("/material");
+        setMaterials(response.data);
+        console.log("Lista de materiais:", response.data);
+        } catch (error) {
+        console.error("Erro ao buscar materiais:", error);
+        }
     }
 
+    async function materialAdd() {
+        try {
+            await api.post('/material', {
+            des_material_mte: forMaterial.description
+            });
+            console.log("Material cadastrado:", forMaterial.description);
+        } catch (error) {
+            console.error('Erro ao cadastrar material', error);
+            throw error;
+        }
+    }
 
-    return(
+   async function handleMaterialSubmit(e) {
+        e.preventDefault();
+        try {
+            await materialAdd()
+            await fetchMaterials()
+            setFormMaterial({ description: '' })
+            console.log("Material cadastrado:", forMaterial.description);
+        } catch (error) {
+            console.error('Erro ao cadastrar material', error)
+        }
+    };
+
+    async function handleDeleteMaterial(material) {
+        const userConfirmed = window.confirm(
+            `Você realmente deseja excluir o material "${material.des_material_mte}"?`
+          );
+          if (userConfirmed) {
+            if (material.is_ativo_mte === 0) {
+              alert('Este material não pode ser excluído porque não está ativo.');
+            } else {
+              try {
+                await api.delete(`/material/${material.id_material_mte}`);
+                alert(`O material "${material.des_material_mte}" foi excluído com sucesso.`);
+                fetchMaterials();
+                console.log(handleDeleteMaterial())
+              } catch (error) {
+                console.error('Erro ao excluir material', error);
+              }
+            }
+          }
+    }
+
+   return (
         <Container>
-            <Sidenav/>
-            <Topbar/>
+            <Sidenav />
+            <Topbar />
 
             <Content>
                 <PageHeader
-                    onClick={ () => openModal() }
+                    onClick={() => openModal()}
                     titulo='Cadastro de Material'
                     adicionar='Cadastrar Material'
                     exportar='Exportar'
+                    btnExport={() => {}}
+                    breadItens={['Home', 'Cadastro de Material']}
                 />
 
                 {isModalOpen && (
@@ -68,20 +122,22 @@ export default function Material() {
                         <ModalContent>
                             <ModalHeader>
                                 <h2>Cadastrar Material</h2>
-                                <button onClick={closeModal} >X</button>
+                                <button onClick={closeModal}>X</button>
                             </ModalHeader>
-                            <DeviderHorizontal/>
+                            <DeviderHorizontal />
                             <div>
                                 <MaterialForm>
                                     <span>Nome do Material:</span>
                                     <Input
                                         type="text"
-                                        value={material}
-                                        onChange={(e) => setMaterial(e.target.value)}
+                                        value={forMaterial.description}
+                                        onChange={(e) =>
+                                            setFormMaterial({ ...forMaterial, description: e.target.value })
+                                          }
                                     />
                                 </MaterialForm>
                             </div>
-                            <DeviderHorizontal/>
+                            <DeviderHorizontal />
                             <ModalBotao>
                                 <Button onClick={handleMaterialSubmit}>Cadastrar</Button>
                                 <ButtonClose onClick={closeModal}>Fechar</ButtonClose>
@@ -90,25 +146,22 @@ export default function Material() {
                     </ModalContainer>
                 )}
 
-                <div>
                     <StyledTable>
-                        <thead>
-                            <TableHeader>Ações</TableHeader>
-                            <TableHeader>ID</TableHeader>
-                            <TableHeader>Material</TableHeader>
-                            <TableHeader>Data</TableHeader>
-                        </thead>
+                        <TableHeader/>
                         <tbody>
-                            <TableCell>
-                            <Button>Editar</Button>
-                            <Button>Excluir</Button>
-                            </TableCell>
-                            <TableCell>{id}</TableCell>
-                            <TableCell>{material}</TableCell>
-                            <TableCell>{dataCadastro}</TableCell>
+                            { materials
+                                .filter((material) => material.is_ativo_mte === 1)
+                                .map((material) => (
+                                        <TableRow
+                                            key={material.id_material_mte}
+                                            material={material}
+                                            onClickEditar={() => {} }
+                                            onClickExluir={() => handleDeleteMaterial(material) }
+                                        />
+                                ))
+                            }
                         </tbody>
                     </StyledTable>
-                </div>
             </Content>
         </Container>
     )

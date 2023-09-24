@@ -6,24 +6,23 @@ import {Container} from './style';
 
 import Title from '../../components/Title';
 import Breadcrumb from '../../components/Breadcrumb';
+import ButtonAdd from "../ButtonAdd";
 
-export default function PageHeader( {titulo, adicionar, exportar, onClick } ) {
+export default function PageHeader( {titulo, adicionar, exportar, onClick, breadItens, btnExport } ) {
     return(
         <Container>
             <div>
                 <Title>{titulo}</Title>
-                <Breadcrumb breadItens={['Home', 'Vazio']}/>
+                <Breadcrumb breadItens={breadItens}/>
             </div>
-            <div className="btn-area">
-                <button className="add-btn" onClick={onClick}>
-                    <MdAdd size={18} color="#fff"/>
-                    <span>{adicionar}</span>
-                </button>
-                <button className="export-btn" >
-                    <MdOutlineFileDownload size={18} color="#fff"/>
-                    <span>{exportar}</span>
-                </button>
-            </div>
+
+            <ButtonAdd
+                adicionar={adicionar}
+                exportar={exportar}
+                onClick={onClick}
+                btnExport={btnExport}
+            />
+
         </Container>
     )
 }
