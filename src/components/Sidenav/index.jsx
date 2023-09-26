@@ -1,33 +1,27 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useState } from "react";
 
 import { AuthContext } from "../../contexts/auth";
 
 import logo from '../../assets/logo-dark-zanex.png';
 
-import {MdHome, 
-    MdDesignServices, 
-    MdPersonAdd, 
-    MdAppRegistration,
-    MdEditDocument,
-    MdStorage,
-    MdMoneyOff,
-    MdSettings,
-    MdKeyboardArrowRight,
+import {
     MdKeyboardArrowDown,
+    MdKeyboardArrowRight
 } from 'react-icons/md';
 
-import { 
+import {
     Aside,
-    Logo, 
+    Logo,
     Nav,
+    NavItem,
     NavSubMenu,
     NavTitle,
-    NavItem,
 } from './style';
 
 export default function Sidenav() {
 
     const { userMenu } = useContext(AuthContext);
+    console.log(userMenu)
 
     const [showMenus, setShowMenus] = useState(new Array(userMenu.length).fill(false));
 

@@ -1,12 +1,13 @@
-import React from "react";
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 //Pages
+import Empty from "../pages/Empty";
+import Home from "../pages/Home";
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import Home from "../pages/Home";
-import Empty from "../pages/Empty";
+import RegisterMaterial from "../pages/RegisterMaterial";
 
+import Service from '../pages/Servico';
 import Private from "./Private";
 
 function RoutesApp() {
@@ -17,6 +18,8 @@ function RoutesApp() {
             <Route path="/login" element={ <Login/> }/>
             <Route path="/register" element={ <Register/> }/>
             <Route path="/empty" element={ <Private><Empty/></Private> }/> 
+            <Route path="/cadastroMaterial" element={ <RegisterMaterial/> }/>
+            <Route path="/service" element={ <Service /> }/>
             
         </Routes>
     )
