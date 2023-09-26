@@ -8,7 +8,6 @@ import Title from '../../components/Title';
 import Breadcrumb from '../../components/Breadcrumb';
 import ButtonAdd from "../ButtonAdd";
 
-<<<<<<< HEAD
 export default function PageHeader({title, breadItens}) {
     return(
         <Container>
@@ -25,14 +24,6 @@ export default function PageHeader({title, breadItens}) {
                     <MdOutlineFileDownload size={18} color="#fff"/>
                     <span>Exportar</span>
                 </a>
-=======
-export default function PageHeader( {titulo, adicionar, exportar, onClick, breadItens, btnExport } ) {
-    return(
-        <Container>
-            <div>
-                <Title>{titulo}</Title>
-                <Breadcrumb breadItens={breadItens}/>
->>>>>>> bf2fe787fd2066b30ac790b6800dc4353a65b6bf
             </div>
 
             <ButtonAdd
