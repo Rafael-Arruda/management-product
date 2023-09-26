@@ -14,8 +14,8 @@ export default function Home() {
             <Topbar/>
 
             <Content>
-                conteúdo da página    
-            </Content>    
+                conteúdo da página
+            </Content>
         </Container>
     )
 }
