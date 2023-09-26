@@ -7,12 +7,12 @@ import {Container} from './style';
 import Title from '../../components/Title';
 import Breadcrumb from '../../components/Breadcrumb';
 
-export default function PageHeader() {
+export default function PageHeader({title, breadItens}) {
     return(
         <Container>
             <div>
-                <Title>Vazio</Title>
-                <Breadcrumb breadItens={['Home', 'Vazio']}/>    
+                <Title>{title}</Title>
+                <Breadcrumb breadItens={breadItens}/>    
             </div>
             <div className="btn-area">
                 <a className="add-btn" href="#">

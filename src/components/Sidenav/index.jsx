@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 
 import { AuthContext } from "../../contexts/auth";
+import { PaginationContext } from '../../contexts/pagination';
 
 import logo from '../../assets/logo-dark-zanex.png';
 
@@ -28,6 +29,7 @@ import {
 export default function Sidenav() {
 
     const { userMenu } = useContext(AuthContext);
+    const {handlePagination} = useContext(PaginationContext);
 
     const [showMenus, setShowMenus] = useState(new Array(userMenu.length).fill(false));
 
@@ -56,7 +58,7 @@ export default function Sidenav() {
                         </NavTitle>
                         {item.children && item.children.map((value) => (
                             showMenus[index] &&
-                            <NavItem key={value.id_menu_mnu}>
+                            <NavItem key={value.id_menu_mnu} onClick={() => handlePagination(`${item.des_menu_mnu}`, [`${item.des_menu_mnu}`, `${value.des_menu_mnu}`])}>
                                 <span>{value.des_menu_mnu}</span>
                             </NavItem>
                         ))}

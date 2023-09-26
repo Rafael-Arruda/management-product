@@ -2,6 +2,7 @@ import React from "react"
 
 import RoutesApp from "./routes";
 import AuthProvider from "./contexts/auth";
+import PaginationProvider from "./contexts/pagination";
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -14,9 +15,11 @@ function App() {
     
       <ToastContainer autoClose={3000}/>
 
-      <AuthProvider>
-        <RoutesApp/>
-      </AuthProvider>
+      <PaginationProvider>
+        <AuthProvider>
+          <RoutesApp/>
+        </AuthProvider>
+      </PaginationProvider>
     
     </BrowserRouter>
   )
