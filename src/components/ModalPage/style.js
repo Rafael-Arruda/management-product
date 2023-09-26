@@ -24,17 +24,21 @@ export const ModalContent = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 500px;
-  height: 250px;
+  height: auto;
 `;
 
 export const ModalHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     button{
-        border: none;
-        background: transparent;
-        font-weight: bold;
+      border: none;
+      background-color: var(--primary-bg-color);
+      font-weight: bold;
+      padding: 5px;
+      border-radius: 3px;
+      color: #FFF;
     }
 
 `
@@ -70,7 +74,7 @@ export const Button = styled.button`
 
 export const ButtonClose = styled.button`
   background-color: var(--home-color);
-  margin-top: 10px;
+  margin: 10px;
   color: var(--gray-dark);
   padding: 10px;
   border: none;
