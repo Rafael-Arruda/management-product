@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
+
+import { PaginationContext } from "../../contexts/pagination";
 
 import { Container } from './style';
 
@@ -9,14 +11,17 @@ import Content from "../../components/Content";
 import PageHeader from "../../components/PageHeader";
 
 export default function Empty() {
+
+    const {title, breadItens} = useContext(PaginationContext);
+
     return(
         <Container>
             <Sidenav/>
             <Topbar/>
 
             <Content>
-                <PageHeader/>
-            </Content>
+                <PageHeader title={title} breadItens={breadItens}/>
+            </Content>    
         </Container>
     )
 }
