@@ -22,8 +22,22 @@ export default function Service() {
         const fetchServices = async () => {
             try {
                 // const response = await api.get("/service");
-                setServices([1,2,3,4]);
-                // console.log("Lista:", response.data);
+                setServices([
+                    {
+                        id_servico_ser: 1,
+                        des_servico_ser: 'teste 1',
+                        txt_servico_ser: 'obs do servico',
+                        vlr_servico_ser: 12.50,
+                        created_at: '2023-09-28 20:50'
+                    },
+                    {
+                        id_servico_ser: 2,
+                        des_servico_ser: 'teste 2',
+                        txt_servico_ser: 'obs do servico2',
+                        vlr_servico_ser: 11.50,
+                        created_at: '2023-09-28 21:50'
+                    }
+                ]);
             } catch (error) {
                 console.error("Erro ao buscar:", error);
             }
@@ -32,7 +46,7 @@ export default function Service() {
     }, []);
 
 
-   return (
+    return (
         <Container>
             <Sidenav />
             <Topbar />
@@ -43,10 +57,10 @@ export default function Service() {
                     titulo='Serviço'
                     adicionar='Novo Serviço'
                     exportar='Exportar'
-                    btnExport={() => {}}
+                    btnExport={() => { }}
                     breadItens={['Serviço']}
                 />
-                    <ServiceTable data={services} />
+                <ServiceTable data={services} />
             </Content>
         </Container>
     )

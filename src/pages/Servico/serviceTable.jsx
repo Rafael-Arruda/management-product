@@ -2,56 +2,55 @@ import React from "react";
 
 import { Button } from './style';
 
-import DataTable from "react-data-table-component";
+import Table from "../../components/Table";
 import { formatDate } from "../../utils/datehelper";
 
+// eslint-disable-next-line react/prop-types
 export default function ServiceTable({ data = [] }) {
-
 
 
   const columns = [
     {
       name: 'Ações',
-      cell: (row) => (
+      cell: ({ id_servico_ser }) => (
         <div>
-          <Button onClick={() => console.log("editar")}>Editar</Button>
-          <Button onClick={() => console.log("excluir")}>Excluir</Button>
+          <Button onClick={() => console.log("editar", id_servico_ser)}>Editar</Button>
+          <Button onClick={() => console.log("excluir", id_servico_ser)}>Excluir</Button>
         </div>
       ),
     },
     {
       name: "ID",
-      selector: (row) => `${'row.id_material_mte'}`,
+      selector: ({ id_servico_ser }) => `${id_servico_ser}`,
       sortable: true,
     },
     {
       name: "Descrição",
-      selector: (row) => `${'row.des_material_mte'}`,
+      selector: ({ des_servico_ser }) => `${des_servico_ser}`,
+      sortable: true,
+    },
+    {
+      name: "Observação",
+      selector: ({ txt_servico_ser }) => `${txt_servico_ser}`,
       sortable: true,
     },
     {
       name: "Valor",
-      selector: (row) => `${'row.vlr_material_mte'}`,
+      selector: ({ vlr_servico_ser }) => `${vlr_servico_ser}`,
       sortable: true,
       cell: (row) => `R$ ${(0.111).toFixed(2)}`
     },
     {
       name: "Data de Cadastro",
-      selector: (row) => `${'row.created_at'}`,
+      selector: ({ created_at }) => `${created_at}`,
       sortable: true,
-      format: (row) => formatDate('row.created_at'),
+      format: ({ created_at }) => formatDate(created_at),
     },
   ];
   return (
-
-    <DataTable
+    <Table
       columns={columns}
       data={data}
-      pagination
-      paginationPerPage={10}
-      paginationRowsPerPageOptions={[10, 20, 30]}
-      searchable
-      sortable
     />
   )
 }
