@@ -22,8 +22,8 @@ import {
 export default function Sidenav() {
 
     const { userMenu } = useContext(AuthContext);
-    console.log(userMenu)
-    const {handlePagination} = useContext(PaginationContext);
+
+    const { handlePagination } = useContext(PaginationContext);
 
     const [showMenus, setShowMenus] = useState(new Array(userMenu.length).fill(false));
 
@@ -34,7 +34,7 @@ export default function Sidenav() {
         setShowMenus(newArray);
     }
 
-    return(
+    return (
         <Aside>
             <Logo>
                 <img src={logo} alt="logo" />
@@ -44,9 +44,9 @@ export default function Sidenav() {
                     <NavSubMenu key={item.id_menu_mnu}>
                         <NavTitle onClick={() => handleShowMenu(index)}>
                             <h3>{item.des_menu_mnu}</h3>
-                            {item.children?  
-                                showMenus[index]? <MdKeyboardArrowDown size={18} color="#76839a"/> : <MdKeyboardArrowRight size={18} color="#76839a"/>
-                                : 
+                            {item.children ?
+                                showMenus[index] ? <MdKeyboardArrowDown size={18} color="#76839a" /> : <MdKeyboardArrowRight size={18} color="#76839a" />
+                                :
                                 ""
                             }
                         </NavTitle>
@@ -59,6 +59,6 @@ export default function Sidenav() {
                     </NavSubMenu>
                 ))}
             </Nav>
-        </Aside> 
+        </Aside>
     )
 }
