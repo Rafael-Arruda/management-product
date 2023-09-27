@@ -14982,5 +14982,5 @@ const list = {
 }
 
 export default function Icon({ icon = 'PiHouseBold' }) {
-  return list[icon];
+  return list[icon] ?? <></>;
 }
