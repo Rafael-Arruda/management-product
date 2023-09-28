@@ -1,19 +1,18 @@
 import React from "react";
 
-import {MdAdd, MdOutlineFileDownload} from 'react-icons/md';
 
-import {Container} from './style';
+import { Container } from './style';
 
-import Title from '../../components/Title';
 import Breadcrumb from '../../components/Breadcrumb';
+import Title from '../../components/Title';
 import ButtonAdd from "../ButtonAdd";
 
-export default function PageHeader( {titulo, adicionar, exportar, onClick, breadItens, btnExport } ) {
-    return(
+export default function PageHeader({ titulo, adicionar, exportar, onClick, breadItens, btnExport }) {
+    return (
         <Container>
             <div>
                 <Title>{titulo}</Title>
-                <Breadcrumb breadItens={breadItens}/>
+                <Breadcrumb breadItens={breadItens} />
             </div>
 
             <ButtonAdd

@@ -6,7 +6,7 @@ import Table from "../../components/Table";
 import { formatDate } from "../../utils/datehelper";
 
 // eslint-disable-next-line react/prop-types
-export default function ServiceTable({ data = [] }) {
+export default function ServiceTable({ data = [], handleEdit }) {
 
 
   const columns = [
@@ -14,7 +14,7 @@ export default function ServiceTable({ data = [] }) {
       name: 'Ações',
       cell: ({ id_servico_ser }) => (
         <div>
-          <Button onClick={() => console.log("editar", id_servico_ser)}>Editar</Button>
+          <Button onClick={() => handleEdit(id_servico_ser)}>Editar</Button>
           <Button onClick={() => console.log("excluir", id_servico_ser)}>Excluir</Button>
         </div>
       ),
