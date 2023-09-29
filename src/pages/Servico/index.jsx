@@ -11,14 +11,20 @@ import Topbar from "../../components/Topbar";
 import Content from "../../components/Content";
 import PageHeader from "../../components/PageHeader";
 
+import ServiceForm from "./serviceForm";
 import ServiceTable from "./serviceTable";
 
 export default function Service() {
 
     const [services, setServices] = useState([]);
+<<<<<<< HEAD
 
     const {title, breadItens} = useContext(PaginationContext);
 
+=======
+    const [serviceEdited, setServiceEdited] = useState({});
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+>>>>>>> 7efbc85228a28b96e5882bfc21c375b8b86f880d
 
     // Chamada da API - Lista todos os materiais
     useEffect(() => {
@@ -48,6 +54,14 @@ export default function Service() {
         fetchServices();
     }, []);
 
+    const handleEdit = (id_servico_ser) => {
+        const edit = services.filter((reg) => reg.id_servico_ser == id_servico_ser)[0];
+        setServiceEdited(edit)
+        setModalIsOpen(true);
+    }
+
+
+    console.log('serviceEdited', serviceEdited)
 
     return (
         <Container>
@@ -56,14 +70,20 @@ export default function Service() {
 
             <Content>
                 <PageHeader
+<<<<<<< HEAD
                     onClick={() => console.log('modal')}
                     titulo={title}
+=======
+                    onClick={() => setModalIsOpen(true)}
+                    titulo='Serviço'
+>>>>>>> 7efbc85228a28b96e5882bfc21c375b8b86f880d
                     adicionar='Novo Serviço'
                     exportar='Exportar'
                     btnExport={() => { }}
                     breadItens={breadItens}
                 />
-                <ServiceTable data={services} />
+                <ServiceTable data={services} handleEdit={handleEdit} />
+                <ServiceForm service={serviceEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} />
             </Content>
         </Container>
     )
