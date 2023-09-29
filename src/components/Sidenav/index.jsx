@@ -14,6 +14,7 @@ import {
 
 import Icon from '../Icons';
 
+import Menu from "../Menu";
 
 import {
     Aside,
@@ -30,15 +31,6 @@ export default function Sidenav() {
 
     const { handlePagination } = useContext(PaginationContext);
 
-    const [showMenus, setShowMenus] = useState(new Array(userMenu.length).fill(false));
-
-    function handleShowMenu(index) {
-        const newArray = [...showMenus];
-        newArray[index] = !newArray[index];
-
-        setShowMenus(newArray);
-    }
-
     return (
         <Aside>
             <Logo>
@@ -46,6 +38,11 @@ export default function Sidenav() {
             </Logo>
             <Nav>
                 {userMenu.map((item, index) => (
+                    <Menu key={index} menu={item}/>
+                ))}
+
+
+                {/* {userMenu.map((item, index) => (
                     <NavSubMenu key={item.id_menu_mnu}>
                         <NavTitle onClick={() => handleShowMenu(index)}>
                             <h3><Icon icon={item.icon_menu_mnu} />  <span style={{ marginRight: 4 }} />{item.des_menu_mnu}</h3>
@@ -62,7 +59,7 @@ export default function Sidenav() {
                             </NavItem>
                         ))}
                     </NavSubMenu>
-                ))}
+                ))} */}
             </Nav>
         </Aside>
     )

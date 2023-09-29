@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+
+import { PaginationContext } from "../../contexts/pagination";
 
 import { Container } from './style';
 
@@ -15,6 +17,7 @@ export default function Service() {
 
     const [services, setServices] = useState([]);
 
+    const {title, breadItens} = useContext(PaginationContext);
 
 
     // Chamada da API - Lista todos os materiais
@@ -54,11 +57,11 @@ export default function Service() {
             <Content>
                 <PageHeader
                     onClick={() => console.log('modal')}
-                    titulo='Serviço'
+                    titulo={title}
                     adicionar='Novo Serviço'
                     exportar='Exportar'
                     btnExport={() => { }}
-                    breadItens={['Serviço']}
+                    breadItens={breadItens}
                 />
                 <ServiceTable data={services} />
             </Content>

@@ -66,6 +66,7 @@ function AuthProvider({children}) {
             
             storageUser(value.data.user);
             storageUserMenu(value.data.menu);
+            console.log(value.data.menu);
             
             toast.success('Seja bem vindo, ' + value.data.user.name + "!");
             setLoadingAuth(false);
