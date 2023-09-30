@@ -34,11 +34,15 @@ export const ModalHeader = styled.div`
 
     button{
       border: none;
-      background-color: var(--primary-bg-color);
+      background-color: transparent;
       font-weight: bold;
       padding: 5px;
       border-radius: 3px;
-      color: #FFF;
+      color: #333;
+    }
+    button:hover{
+      transition: all 0.2s ease-in-out;
+      transform: scale(140%);
     }
 
 `

@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { PaginationContext } from "../../contexts/pagination";
 
@@ -58,8 +58,6 @@ export default function Service() {
     }
 
 
-    console.log('serviceEdited', serviceEdited)
-
     return (
         <Container>
             <Sidenav />
@@ -67,7 +65,10 @@ export default function Service() {
 
             <Content>
                 <PageHeader
-                    onClick={() => setModalIsOpen(true)}
+                    onClick={() => {
+                        setServiceEdited({});
+                        setModalIsOpen(true)
+                    }}
                     titulo={title}
                     adicionar='Novo Serviço'
                     exportar='Exportar'
@@ -75,7 +76,7 @@ export default function Service() {
                     breadItens={breadItens}
                 />
                 <ServiceTable data={services} handleEdit={handleEdit} />
-                <ServiceForm service={serviceEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} />
+                { modalIsOpen && <ServiceForm service={serviceEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} /> }
             </Content>
         </Container>
     )

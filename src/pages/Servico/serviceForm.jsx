@@ -18,8 +18,7 @@ export default function ServiceForm({ service, onClose, visible }) {
 
   const [form, setForm] = useState({});
   const [error, setError] = useState({});
-  useEffect(() => { setForm(service ?? {}) }, [service])
-
+  useEffect(() => { setForm(service ?? {}); }, [service])
 
   const handleChangeValue = (event) => {
     const inputName = event.target.name;
@@ -28,7 +27,6 @@ export default function ServiceForm({ service, onClose, visible }) {
   }
 
   const handleSubmit = async (event) => {
-  
     try {
       await schema.validate(form);
       // TODO submit to backend
