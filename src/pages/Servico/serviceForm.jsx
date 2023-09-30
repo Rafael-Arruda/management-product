@@ -1,14 +1,23 @@
 import { useEffect, useState } from "react";
+import yup from "../../utils/yup";
+
+
+
 import Input from "../../components/Input";
 import Modal from "../../components/Modal";
 
-import api from "../../services/api";
 import { Button, FormGroup } from "./style";
 
+const schema = yup.object().shape({
+  vlr_servico_ser: yup.number().required().positive().integer(),
+  txt_servico_ser: yup.string().min(20).required(),
+  des_servico_ser: yup.string().min(10).required(),
+});
 
 export default function ServiceForm({ service, onClose, visible }) {
 
   const [form, setForm] = useState({});
+  const [error, setError] = useState({});
   useEffect(() => { setForm(service ?? {}) }, [service])
 
 
@@ -19,13 +28,20 @@ export default function ServiceForm({ service, onClose, visible }) {
   }
 
   const handleSubmit = async (event) => {
-    // TODO: implementar yup
-    if (form.des_servico_ser && form.txt_servico_ser && form.vlr_servico_ser) {
-      const response = await api.post("/service", form);
-      console.log(response)
-    } else {
-      // alert
-      console.log('alert')
+  
+    try {
+      await schema.validate(form);
+      // TODO submit to backend
+      // const response = await api.post("/service", form);
+      // console.log(response)
+    } catch (err) {
+      let objError = {};
+      err.errors.forEach(e => {
+        const [inputError, ...error] = e.split(' ');
+        objError = {...objError, [inputError]:error.join(' ')}
+      });
+      
+      setError(objError);
     }
   }
 
@@ -39,6 +55,7 @@ export default function ServiceForm({ service, onClose, visible }) {
           defaultValue={form?.des_servico_ser ?? ''}
           name='des_servico_ser'
           onChange={handleChangeValue}
+          error={error?.des_servico_ser ?? false}
         />
       </FormGroup>
 
@@ -49,6 +66,7 @@ export default function ServiceForm({ service, onClose, visible }) {
           defaultValue={form?.txt_servico_ser ?? ''}
           name='txt_servico_ser'
           onChange={handleChangeValue}
+          error={error?.txt_servico_ser ?? false}
         />
       </FormGroup>
 
@@ -59,6 +77,7 @@ export default function ServiceForm({ service, onClose, visible }) {
           defaultValue={form?.vlr_servico_ser ?? ''}
           name='vlr_servico_ser'
           onChange={handleChangeValue}
+          error={error?.vlr_servico_ser ?? false}
         />
       </FormGroup>
 
