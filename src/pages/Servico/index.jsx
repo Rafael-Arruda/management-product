@@ -17,14 +17,11 @@ import ServiceTable from "./serviceTable";
 export default function Service() {
 
     const [services, setServices] = useState([]);
-<<<<<<< HEAD
 
     const {title, breadItens} = useContext(PaginationContext);
 
-=======
     const [serviceEdited, setServiceEdited] = useState({});
     const [modalIsOpen, setModalIsOpen] = useState(false);
->>>>>>> 7efbc85228a28b96e5882bfc21c375b8b86f880d
 
     // Chamada da API - Lista todos os materiais
     useEffect(() => {
@@ -70,13 +67,8 @@ export default function Service() {
 
             <Content>
                 <PageHeader
-<<<<<<< HEAD
-                    onClick={() => console.log('modal')}
-                    titulo={title}
-=======
                     onClick={() => setModalIsOpen(true)}
-                    titulo='Serviço'
->>>>>>> 7efbc85228a28b96e5882bfc21c375b8b86f880d
+                    titulo={title}
                     adicionar='Novo Serviço'
                     exportar='Exportar'
                     btnExport={() => { }}
