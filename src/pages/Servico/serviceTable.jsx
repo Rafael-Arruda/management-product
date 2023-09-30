@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from './style';
 
 import Table from "../../components/Table";
-import { formatDate } from "../../utils/datehelper";
+import { formatDate } from "../../utils/dateHelper";
 
 // eslint-disable-next-line react/prop-types
 export default function ServiceTable({ data = [], handleEdit }) {
