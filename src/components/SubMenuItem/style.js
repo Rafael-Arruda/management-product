@@ -44,3 +44,7 @@ export const MenuItem = styled.div`
     }
 
 `;
+
+export const Space4 = styled.span`
+    margin: 0 4px;
+`;

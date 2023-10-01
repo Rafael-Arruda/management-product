@@ -21,4 +21,12 @@ export const MenuTitle = styled.h3`
     font-weight: 600;
     color: #76839a;
     opacity: 0.7;
+
+    svg{
+        padding-top: 2px;
+    }
+`;
+
+export const Space4 = styled.span`
+    margin: 0 4px;
 `;

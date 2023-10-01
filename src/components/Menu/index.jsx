@@ -1,13 +1,13 @@
 import React from "react";
 
-import {Container, MenuTitle} from './style';
+import { Container, MenuTitle, Space4 } from './style';
 
 import SubMenu from "../SubMenu";
 
 import {
-    MdKeyboardArrowDown,
     MdKeyboardArrowRight
 } from 'react-icons/md';
+import Icon from "../Icons";
 
 export default function Menu({menu, showMenu}) {
     
@@ -22,7 +22,8 @@ export default function Menu({menu, showMenu}) {
                 </div>
             :
                 <div className="menu-item">
-                    <MenuTitle>{menu.des_menu_mnu}</MenuTitle>
+                    
+                    <MenuTitle><Icon icon={menu.icon_menu_mnu} /><Space4/>{menu.des_menu_mnu}</MenuTitle>
                 </div>
             }
 
