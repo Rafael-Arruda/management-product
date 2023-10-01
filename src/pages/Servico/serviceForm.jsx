@@ -6,7 +6,8 @@ import yup from "../../utils/yup";
 import Input from "../../components/Input";
 import Modal from "../../components/Modal";
 
-import { Button, FormGroup } from "./style";
+import ButtonSubmit from "../../components/Buttons/ButtonSubmit";
+import { FormGroup } from "./style";
 
 const schema = yup.object().shape({
   vlr_servico_ser: yup.number().required().positive().integer(),
@@ -18,6 +19,8 @@ export default function ServiceForm({ service, onClose, visible }) {
 
   const [form, setForm] = useState({});
   const [error, setError] = useState({});
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
+
   useEffect(() => { setForm(service ?? {}); }, [service])
 
   const handleChangeValue = (event) => {
@@ -27,21 +30,27 @@ export default function ServiceForm({ service, onClose, visible }) {
   }
 
   const handleSubmit = async (event) => {
-    try {
-      await schema.validate(form);
-      // TODO submit to backend
-      // const response = await api.post("/service", form);
-      // console.log(response)
-    } catch (err) {
-      let objError = {};
-      err.errors.forEach(e => {
-        const [inputError, ...error] = e.split(' ');
-        objError = {...objError, [inputError]:error.join(' ')}
-      });
-      
-      setError(objError);
-    }
+    setLoadingSubmit(true);
+    setTimeout(async () => {
+      try {
+        await schema.validate(form);
+        // TODO submit to backend
+        // const response = await api.post("/service", form);
+        // console.log(response)
+      } catch (err) {
+        let objError = {};
+        err.errors.forEach(e => {
+          const [inputError, ...error] = e.split(' ');
+          objError = { ...objError, [inputError]: error.join(' ') }
+        });
+
+        setError(objError);
+      } finally {
+        setLoadingSubmit(false);
+      }
+    }, 2000);
   }
+
 
   return (
     <Modal title="Cadastro" onClose={onClose} visible={visible} >
@@ -79,7 +88,7 @@ export default function ServiceForm({ service, onClose, visible }) {
         />
       </FormGroup>
 
-      <Button onClick={handleSubmit}>Salvar</Button>
+      <ButtonSubmit handleSubmit={handleSubmit} loading={loadingSubmit} >Salvar</ButtonSubmit>
     </Modal>
   )
 }
