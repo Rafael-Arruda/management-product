@@ -7,6 +7,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import RegisterMaterial from "../pages/RegisterMaterial";
 
+import ListIcons from '../pages/Debug/ListIcons';
 import Service from '../pages/Servico';
 import Private from "./Private";
 
@@ -20,6 +21,7 @@ function RoutesApp() {
             <Route path="/empty" element={ <Private><Empty/></Private> }/> 
             <Route path="/cadastroMaterial" element={ <RegisterMaterial/> }/>
             <Route path="/service" element={ <Service /> }/>
+            <Route path="/listicons" element={ <ListIcons /> }/>
             
         </Routes>
     )
