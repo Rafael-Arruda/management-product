@@ -9,26 +9,25 @@ import {
 } from 'react-icons/md';
 import Icon from "../Icons";
 
-export default function Menu({menu, showMenu}) {
-    
-    console.log(menu)
+export default function Menu({ menu, showMenu }) {
 
-    return(
+
+    return (
         <Container>
-            {menu.children?
+            {menu.children ?
                 <div className="menu-item">
                     <MenuTitle>{menu.des_menu_mnu}</MenuTitle>
-                    <MdKeyboardArrowRight size={18} color="#76839a"/>
+                    <MdKeyboardArrowRight size={18} color="#76839a" />
                 </div>
-            :
+                :
                 <div className="menu-item">
-                    
-                    <MenuTitle><Icon icon={menu.icon_menu_mnu} /><Space4/>{menu.des_menu_mnu}</MenuTitle>
+
+                    <MenuTitle><Icon icon={menu.icon_menu_mnu} /><Space4 />{menu.des_menu_mnu}</MenuTitle>
                 </div>
             }
 
             {menu.children && menu.children.map((item, index) => (
-                <SubMenu key={index} submenu={item}/>
+                <SubMenu key={index} submenu={item} />
             ))}
         </Container>
     )
