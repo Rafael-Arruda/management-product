@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 
 import Icon from '../Icons';
@@ -15,6 +15,11 @@ const SelectBox = ({ options, defaultValue, name, onChange, error }) => {
 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [visibled, setVisibled] = useState(true);
+
+  useEffect(() => {
+    const selected = options.filter(reg => defaultValue.includes(reg.value))
+    setSelectedOptions(selected);
+  }, [])
 
   const handleSelectChange = (selected) => {
     setSelectedOptions(selected);
