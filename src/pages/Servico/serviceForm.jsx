@@ -7,6 +7,7 @@ import Input from "../../components/Input";
 import Modal from "../../components/Modal";
 
 import ButtonSubmit from "../../components/Buttons/ButtonSubmit";
+import SelectBox from "../../components/Select";
 import { FormGroup } from "./style";
 
 const schema = yup.object().shape({
@@ -14,6 +15,13 @@ const schema = yup.object().shape({
   txt_servico_ser: yup.string().min(20).required(),
   des_servico_ser: yup.string().min(10).required(),
 });
+
+const options = [
+  { value: 'option1', label: 'Option 1' },
+  { value: 'option2', label: 'Option 2' },
+  { value: 'option3', label: 'Option 3' },
+  { value: 'option4', label: 'Option 4' },
+];
 
 export default function ServiceForm({ service, onClose, visible }) {
 
@@ -24,7 +32,7 @@ export default function ServiceForm({ service, onClose, visible }) {
   useEffect(() => { setForm(service ?? {}); }, [service])
 
   const handleChangeValue = (event) => {
-    const inputName = event.target.name;
+    const inputName = event.target.name.replace(/\[|\]/g, '');
     const value = event.target.value;
     setForm(prev => ({ ...prev, [inputName]: value }))
   }
@@ -37,6 +45,7 @@ export default function ServiceForm({ service, onClose, visible }) {
         // TODO submit to backend
         // const response = await api.post("/service", form);
         // console.log(response)
+        console.log('submitting')
       } catch (err) {
         let objError = {};
         err.errors.forEach(e => {
@@ -48,13 +57,12 @@ export default function ServiceForm({ service, onClose, visible }) {
       } finally {
         setLoadingSubmit(false);
       }
-    }, 2000);
+    }, 1000);
   }
 
 
   return (
-    <Modal title="Cadastro" onClose={onClose} visible={visible} >
-
+    <Modal title={form.id_servico_ser ? "Edição" : "Cadastro"} onClose={onClose} visible={visible} >
       <FormGroup>
         <label>Descrição</label>
         <Input
@@ -87,6 +95,20 @@ export default function ServiceForm({ service, onClose, visible }) {
           error={error?.vlr_servico_ser ?? false}
         />
       </FormGroup>
+      <FormGroup>
+        <label>Serviços</label>
+        <SelectBox
+          options={options}
+          defaultValue={form?.tipo_servico ?? []}
+          name='tipo_servico[]'
+          onChange={handleChangeValue}
+          error={error?.tipo_servico ?? false}
+        />
+      </FormGroup>
+
+      {
+        form.id_servico_ser && ('aaaa')
+      }
 
       <ButtonSubmit handleSubmit={handleSubmit} loading={loadingSubmit} >Salvar</ButtonSubmit>
     </Modal>
