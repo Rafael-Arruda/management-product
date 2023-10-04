@@ -1,35 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import { AuthContext } from "../../contexts/auth";
-import { PaginationContext } from '../../contexts/pagination';
 
 import logo from '../../assets/logo-dark-zanex.png';
 
 
-import {
-    MdKeyboardArrowDown,
-    MdKeyboardArrowRight
-} from 'react-icons/md';
 
 
-import Icon from '../Icons';
 
 import Menu from "../Menu";
 
 import {
     Aside,
     Logo,
-    Nav,
-    NavItem,
-    NavSubMenu,
-    NavTitle,
+    Nav
 } from './style';
 
 export default function Sidenav() {
 
     const { userMenu } = useContext(AuthContext);
 
-    const { handlePagination } = useContext(PaginationContext);
 
     return (
         <Aside>
@@ -38,7 +28,7 @@ export default function Sidenav() {
             </Logo>
             <Nav>
                 {userMenu.map((item, index) => (
-                    <Menu key={index} menu={item}/>
+                    <Menu key={index} menu={item} />
                 ))}
 
 

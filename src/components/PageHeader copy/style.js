@@ -5,8 +5,7 @@ export const Container = styled.div`
 
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    margin-right: 32px;
+    justify-content: space-between;
 
     .btn-area {
         display: flex;

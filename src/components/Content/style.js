@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     position: relative;
-    top: 12vh;
-    left: 260px;
-    
-    width: calc(100% - 260px);
+    width: calc(100dvw - 300px);
+    min-height: calc(100dvh - 180px);
+    padding: 0;
+    margin: 0;
 `;

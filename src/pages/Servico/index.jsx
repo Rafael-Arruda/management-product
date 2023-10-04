@@ -2,11 +2,8 @@ import { useContext, useEffect, useState } from "react";
 
 import { PaginationContext } from "../../contexts/pagination";
 
-import { Container } from './style';
 
 
-import Sidenav from '../../components/Sidenav';
-import Topbar from "../../components/Topbar";
 
 import Content from "../../components/Content";
 import PageHeader from "../../components/PageHeader";
@@ -18,7 +15,7 @@ export default function Service() {
 
     const [services, setServices] = useState([]);
 
-    const {title, breadItens} = useContext(PaginationContext);
+    const { title, breadItens } = useContext(PaginationContext);
 
     const [serviceEdited, setServiceEdited] = useState({});
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -59,25 +56,18 @@ export default function Service() {
 
 
     return (
-        <Container>
-            <Sidenav />
-            <Topbar />
-
-            <Content>
-                <PageHeader
-                    onClick={() => {
-                        setServiceEdited({});
-                        setModalIsOpen(true)
-                    }}
-                    titulo={title}
-                    adicionar='Novo Serviço'
-                    exportar='Exportar'
-                    btnExport={() => { }}
-                    breadItens={breadItens}
-                />
-                <ServiceTable data={services} handleEdit={handleEdit} />
-                { modalIsOpen && <ServiceForm service={serviceEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} /> }
-            </Content>
-        </Container>
+        <Content>
+            <PageHeader
+                onClick={() => {
+                    setServiceEdited({});
+                    setModalIsOpen(true)
+                }}
+                adicionar='Novo Serviço'
+                exportar='Exportar'
+                btnExport={() => { }}
+            />
+            <ServiceTable data={services} handleEdit={handleEdit} />
+            {modalIsOpen && <ServiceForm service={serviceEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} />}
+        </Content>
     )
 }

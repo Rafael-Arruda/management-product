@@ -106,10 +106,6 @@ export default function ServiceForm({ service, onClose, visible }) {
         />
       </FormGroup>
 
-      {
-        form.id_servico_ser && ('aaaa')
-      }
-
       <ButtonSubmit handleSubmit={handleSubmit} loading={loadingSubmit} >Salvar</ButtonSubmit>
     </Modal>
   )

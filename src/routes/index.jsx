@@ -8,21 +8,22 @@ import Register from '../pages/Register';
 import RegisterMaterial from "../pages/RegisterMaterial";
 
 import ListIcons from '../pages/Debug/ListIcons';
+import Layout from '../pages/Layout';
 import Service from '../pages/Servico';
-import Private from "./Private";
 
 function RoutesApp() {
-    return(
+    return (
         <Routes>
-            
-            <Route path="/" element={ <Private><Home/></Private> }/>
-            <Route path="/login" element={ <Login/> }/>
-            <Route path="/register" element={ <Register/> }/>
-            <Route path="/empty" element={ <Private><Empty/></Private> }/> 
-            <Route path="/cadastroMaterial" element={ <RegisterMaterial/> }/>
-            <Route path="/service" element={ <Service /> }/>
-            <Route path="/listicons" element={ <ListIcons /> }/>
-            
+            <Route path="/" element={<Layout />} >
+                <Route path="/" element={<Home />} />
+                <Route path="/empty" element={<Empty />} />
+                <Route path="/cadastroMaterial" element={<RegisterMaterial />} />
+                <Route path="/service" element={<Service />} />
+                <Route path="/listicons" element={<ListIcons />} />
+            </Route>
+
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
         </Routes>
     )
 }
