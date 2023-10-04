@@ -6,6 +6,8 @@ import yup from "../../utils/yup";
 import Input from "../../components/Input";
 import Modal from "../../components/Modal";
 
+import { toast } from "react-toastify";
+
 import ButtonSubmit from "../../components/Buttons/ButtonSubmit";
 import SelectBox from "../../components/Select";
 import { FormGroup } from "./style";
@@ -46,6 +48,9 @@ export default function ServiceForm({ service, onClose, visible }) {
         // const response = await api.post("/service", form);
         // console.log(response)
         console.log('submitting')
+        toast.success("Serviço salvo!");
+
+        setError({});
       } catch (err) {
         let objError = {};
         err.errors.forEach(e => {
