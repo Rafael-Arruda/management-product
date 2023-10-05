@@ -18,6 +18,8 @@ export const SelectedBox = styled.div`
     &:nth-child(odd){
       background: #F0F0F0;
     }
+    display: flex;
+    justify-content: space-between;
   }
   
 `;

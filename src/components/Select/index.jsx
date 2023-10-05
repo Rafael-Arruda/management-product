@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 
 import Icon from '../Icons';
+import Input from '../Input';
 import {
   Box,
   InputError,
@@ -10,7 +11,7 @@ import {
   VisibledPointer
 } from "./style";
 
-const SelectBox = ({ options, defaultValue, name, onChange, error }) => {
+const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) => {
 
 
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -22,10 +23,24 @@ const SelectBox = ({ options, defaultValue, name, onChange, error }) => {
   }, [])
 
   const handleSelectChange = (selected) => {
+    if(limit == 1 && selected.length > 0){
+      selected = [selected.at(-1)];
+    }
     setSelectedOptions(selected);
     const event = { target: { name: name, value: selected } };
     onChange(event)
   };
+  const handleChangeCustomValue = ({customValue, value}) => {
+    const newSelectedOptions = selectedOptions.map(reg => {
+      if(reg.value === value){
+        reg.custom.value = customValue;
+      }
+      return reg;
+    })
+    setSelectedOptions(newSelectedOptions);
+    const event = { target: { name: name, value: newSelectedOptions } };
+    onChange(event)
+  }
 
   return (
     <>
@@ -50,7 +65,7 @@ const SelectBox = ({ options, defaultValue, name, onChange, error }) => {
           visibled &&
           <ul>
             {selectedOptions.map((option) => (
-              <li key={option.value}>{option.label}</li>
+              <li key={option.value}>{option.label} {option.custom && <Input type={option.custom.type} defaultValue={option.custom.value} onChange={(e)=>handleChangeCustomValue({customValue: e.target.value, value: option.value})}/> }</li>
             ))}
           </ul>
         }

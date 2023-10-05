@@ -10,6 +10,10 @@ import { toast } from "react-toastify";
 
 import ButtonSubmit from "../../components/Buttons/ButtonSubmit";
 import SelectBox from "../../components/Select";
+import { getEmployee } from "../../services/employee";
+import { getMaterial } from "../../services/material";
+import { saveServices } from "../../services/service";
+import { getServiceType } from "../../services/serviceType";
 import { FormGroup } from "./style";
 
 const schema = yup.object().shape({
@@ -18,20 +22,27 @@ const schema = yup.object().shape({
   des_servico_ser: yup.string().min(10).required(),
 });
 
-const options = [
-  { value: 'option1', label: 'Option 1' },
-  { value: 'option2', label: 'Option 2' },
-  { value: 'option3', label: 'Option 3' },
-  { value: 'option4', label: 'Option 4' },
-];
 
 export default function ServiceForm({ service, onClose, visible }) {
 
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState(service ?? {});
+  const [formData, setFormData] = useState(service ?? {});
   const [error, setError] = useState({});
   const [loadingSubmit, setLoadingSubmit] = useState(false);
 
-  useEffect(() => { setForm(service ?? {}); }, [service])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+          Promise.all([getEmployee(),getServiceType(), getMaterial()])
+          .then(([employees, servicesType, material])=>{
+            setFormData({employees, servicesType, material})
+          })
+      } catch (error) {
+          console.error("Erro ao buscar:", error);
+      }
+    };
+    fetchData();
+  }, [])
 
   const handleChangeValue = (event) => {
     const inputName = event.target.name.replace(/\[|\]/g, '');
@@ -46,6 +57,8 @@ export default function ServiceForm({ service, onClose, visible }) {
         await schema.validate(form);
         // TODO submit to backend
         // const response = await api.post("/service", form);
+        console.log(JSON.stringify(form));
+        await saveServices(form);
         // console.log(response)
         console.log('submitting')
         toast.success("Serviço salvo!");
@@ -80,6 +93,18 @@ export default function ServiceForm({ service, onClose, visible }) {
       </FormGroup>
 
       <FormGroup>
+        <label>Funcionário</label>
+        <SelectBox
+          options={formData.employees ?? []}
+          defaultValue={form?.id_func ?? []}
+          name='funcionario[]'
+          onChange={handleChangeValue}
+          error={error?.id_func ?? false}
+          limit={1}
+        />
+      </FormGroup>
+
+      <FormGroup>
         <label>Observação</label>
         <Input
           type={'text'}
@@ -103,11 +128,21 @@ export default function ServiceForm({ service, onClose, visible }) {
       <FormGroup>
         <label>Serviços</label>
         <SelectBox
-          options={options}
+          options={formData.servicesType ?? []}
           defaultValue={form?.tipo_servico ?? []}
           name='tipo_servico[]'
           onChange={handleChangeValue}
           error={error?.tipo_servico ?? false}
+        />
+      </FormGroup>
+      <FormGroup>
+        <label>Materiais</label>
+        <SelectBox
+          options={formData.material ?? []}
+          defaultValue={form?.material ?? []}
+          name='material[]'
+          onChange={handleChangeValue}
+          error={error?.material ?? false}
         />
       </FormGroup>
 
