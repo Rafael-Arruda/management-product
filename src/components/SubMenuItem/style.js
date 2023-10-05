@@ -18,7 +18,7 @@ export const MenuItem = styled.div`
     display: flex;
     align-items: center;
     gap: 5px;
-    padding: 8px 10px 8px 80px;
+    padding: 8px 10px 8px 70px;
     cursor: pointer;
     transition: 0.5s all;
     

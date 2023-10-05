@@ -7,7 +7,7 @@ export default function SubMenuItem({subMenuItem}) {
     return(
         <Container>
             <MenuItem>
-                <Icon icon={subMenuItem.icon_menu_mnu} /><Space4/>
+                <Icon icon={subMenuItem.icon_menu_mnu} />
                 <span>{subMenuItem.des_menu_mnu}</span>
             </MenuItem>
         </Container>

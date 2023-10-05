@@ -6,8 +6,10 @@ export const Container = styled.div`
         align-items: center;
         justify-content: space-between;
         cursor: pointer;
-        padding: 0px 30px 0px 60px;
+        padding: 0px 30px 0px 50px;
         margin-bottom: 15px;
+
+        margin-top: 20px;
     }
 `;
 
