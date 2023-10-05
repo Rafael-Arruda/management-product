@@ -70,7 +70,7 @@ function AuthProvider({children}) {
             
             toast.success('Seja bem vindo, ' + value.data.user.name + "!");
             setLoadingAuth(false);
-            navigate('/empty');
+            navigate('/');
         })
         .catch((error) => {
             toast.error('Email ou senha incorreto!');
