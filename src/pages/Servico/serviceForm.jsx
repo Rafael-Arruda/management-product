@@ -35,7 +35,17 @@ export default function ServiceForm({ service, onClose, visible }) {
       try {
           Promise.all([getEmployee(),getServiceType(), getMaterial()])
           .then(([employees, servicesType, material])=>{
-            setFormData({employees, servicesType, material})
+            const serviceTypeOptions = servicesType.map(({ id_servico_tipo_stp, des_servico_tipo_stp, val_servico_tipo_stp })=>{
+              return ({
+                value: id_servico_tipo_stp,
+                label: des_servico_tipo_stp,
+                custom:{
+                    value:val_servico_tipo_stp,
+                    type:'number'
+                }
+              });
+            })
+            setFormData({employees, servicesType:serviceTypeOptions, material})
           })
       } catch (error) {
           console.error("Erro ao buscar:", error);
