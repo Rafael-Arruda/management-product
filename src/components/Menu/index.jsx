@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-import { Container, MenuTitle, Space4 } from './style';
+import { Container, FlexRowStart, MenuTitle } from './style';
 
 import SubMenu from "../SubMenu";
 
 import {
-    MdKeyboardArrowRight,
     MdKeyboardArrowDown,
+    MdKeyboardArrowRight,
 } from 'react-icons/md';
 import Icon from "../Icons";
 
@@ -22,7 +22,10 @@ export default function Menu({ menu }) {
         <Container>
             {menu.children ?
                 <div className="menu-item" onClick={() => handleShowMenu()}>
+                    <FlexRowStart>
+                    <Icon icon={menu.icon_menu_mnu} />
                     <MenuTitle>{menu.des_menu_mnu}</MenuTitle>
+                    </FlexRowStart>
                     {showMenu? <MdKeyboardArrowDown size={18} color="#78839a"/> : <MdKeyboardArrowRight size={18} color="#78839a"/> }
                 </div>
                 :
