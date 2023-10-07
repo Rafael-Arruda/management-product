@@ -8,11 +8,16 @@ import {
     MdKeyboardArrowDown,
     MdKeyboardArrowRight
 } from 'react-icons/md';
+import { useNavigate } from "react-router-dom";
 import Icon from "../Icons";
 
 export default function SubMenu({submenu}) {
     
     const [showMenu, setShowMenu] = useState(false);
+
+    const navigate = useNavigate();
+
+ 
 
     function handleShowMenu() {
         setShowMenu(!showMenu);
@@ -29,7 +34,7 @@ export default function SubMenu({submenu}) {
                     {showMenu? <MdKeyboardArrowDown size={18} color="#78839a"/> : <MdKeyboardArrowRight size={18} color="#78839a"/> }
                 </div>
             :
-                <MenuItem onClick={()=>{}}>
+                <MenuItem onClick={()=>navigate(submenu.path_menu_mnu)}>
                     <Icon icon={submenu.icon_menu_mnu} /><span>{submenu.des_menu_mnu}</span>
                 </MenuItem>
             }
