@@ -57,3 +57,11 @@ export const MenuItem = styled.div`
 export const Space4 = styled.span`
     margin: 0 4px;
 `;
+
+export const FlexRowStart = styled.div`
+    display: flex;
+    flex-direction:row;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+`;
