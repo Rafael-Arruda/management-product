@@ -11,10 +11,10 @@ export default function Input({ type, defaultValue, onChange, error, ...props })
       type={type}
       defaultValue={defaultValue}
       onChange={onChange}
-      error={error}
+      error={!!error}
       {...props}
     />
-    {error && <InputError>{`${error[0].toUpperCase()}${error.substring(1)}`}</InputError> }
+    {!!error && <InputError>{`${error[0].toUpperCase()}${error.substring(1)}`}</InputError> }
     
   </>
   )
