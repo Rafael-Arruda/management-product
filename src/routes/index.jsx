@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 //Pages
+import Page404 from "../pages/404";
 import Empty from "../pages/Empty";
 import Home from "../pages/Home";
 import Login from '../pages/Login';
@@ -24,6 +25,7 @@ function RoutesApp() {
 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="*" element={<Page404 />} />
         </Routes>
     )
 }
