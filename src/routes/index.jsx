@@ -8,6 +8,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import RegisterMaterial from "../pages/RegisterMaterial";
 
+import Estoque from '../pages/CadastroBase/Almoxarifado/Estoque';
 import Material from '../pages/CadastroBase/Almoxarifado/Material';
 import Unidade from '../pages/CadastroBase/Almoxarifado/Unidade';
 import TipoServico from '../pages/CadastroBase/Servico/TipoServico';
@@ -27,6 +28,7 @@ function RoutesApp() {
                 <Route path="/cadastro-base/servico/tipo-servico" element={<TipoServico />} />
                 <Route path="/cadastro-base/almoxarifado/unidade" element={<Unidade />} />
                 <Route path="/cadastro-base/almoxarifado/material" element={<Material />} />
+                <Route path="/cadastro-base/almoxarifado/estoque" element={<Estoque />} />
             </Route>
 
             <Route path="/login" element={<Login />} />
