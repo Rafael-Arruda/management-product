@@ -8,6 +8,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import RegisterMaterial from "../pages/RegisterMaterial";
 
+import Material from '../pages/CadastroBase/Almoxarifado/Material';
 import Unidade from '../pages/CadastroBase/Almoxarifado/Unidade';
 import TipoServico from '../pages/CadastroBase/Servico/TipoServico';
 import ListIcons from '../pages/Debug/ListIcons';
@@ -25,6 +26,7 @@ function RoutesApp() {
                 <Route path="/listicons" element={<ListIcons />} />
                 <Route path="/cadastro-base/servico/tipo-servico" element={<TipoServico />} />
                 <Route path="/cadastro-base/almoxarifado/unidade" element={<Unidade />} />
+                <Route path="/cadastro-base/almoxarifado/material" element={<Material />} />
             </Route>
 
             <Route path="/login" element={<Login />} />

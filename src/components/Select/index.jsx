@@ -14,13 +14,14 @@ import {
 const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) => {
 
 
+  // console.log(defaultValue);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [visibled, setVisibled] = useState(true);
 
   useEffect(() => {
     const selected = options.filter(reg => defaultValue.includes(reg.value))
     setSelectedOptions(selected);
-  }, [])
+  }, [options])
 
   const handleSelectChange = (selected) => {
     if(limit == 1 && selected.length > 0){

@@ -7,20 +7,20 @@ const getMaterial = async () => {
         // const response = await api.get("/service");
         const response = [
             {
-                value: 1,
-                label: 'Lamina de barbear',
-                custom:{
-                    value:'1.00',
-                    type:'number'
-                }
+                id_material_mte: 1,
+                des_material_mte: 'Lamina de barbear',
+                id_unidade_mte: '1',
+                des_unidade: 'UN',
+                vlr_material_mte:'1.00',
+                created_at: '2023-01-01'
             },
             {
-                value: 2,
-                label: 'Giz preto',
-                custom:{
-                    value:'1.00',
-                    type:'number'
-                }
+                id_material_mte: 2,
+                des_material_mte: 'Giz Preto',
+                id_unidade_mte: '2',
+                des_unidade: 'UN',
+                vlr_material_mte:'5.00',
+                created_at: '2023-01-01'
             },
         ];
         return response;
@@ -28,6 +28,24 @@ const getMaterial = async () => {
         console.error("Erro ao buscar:", error);
     }
 };
+const deleteMaterial = async (id) => {
+    try {
+        // const response = await api.get("/service");
+        const response = {};
+        return response;
+    } catch (error) {
+        console.error("Erro ao buscar:", error);
+    }
+};
+const saveMaterial = async (obj) => {
+    try {
+        // const response = await api.get("/service");
+        const success = false;
+        return success;
+    } catch (error) {
+        console.error("Erro ao buscar:", error);
+    }
+};
 
+export { deleteMaterial, getMaterial, saveMaterial };
 
-export { getMaterial };
