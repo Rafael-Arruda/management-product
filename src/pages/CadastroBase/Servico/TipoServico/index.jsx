@@ -49,7 +49,7 @@ export default function TipoServico() {
                 adicionar='Novo Tipo de Serviço'
                 exportar='Exportar'
                 exportFilename='export_tipo_servico'
-                dataset={regs.map(reg=>({'ID':reg.id_servico_tipo_stp, 'Nome': reg.des_servico_tipo_stp, 'Valor': reg.val_servico_tipo_stp, 'Data Criação': formatDate(reg.created_at), 'Data Criação2': (reg.created_at)}))}
+                dataset={regs.map(reg=>({'ID':reg.id_servico_tipo_stp, 'Nome': reg.des_servico_tipo_stp, 'Valor': reg.val_servico_tipo_stp, 'Data Criação': formatDate(reg.created_at)}))}
             />
             <TipoServicoTable data={regs} handleEdit={handleEdit} />
             {modalIsOpen && <TipoServiceForm service={regEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} />}

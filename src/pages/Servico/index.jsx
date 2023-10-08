@@ -9,6 +9,7 @@ import Content from "../../components/Content";
 import PageHeader from "../../components/PageHeader";
 
 import { getServices } from "../../services/service";
+import { formatDate } from "../../utils/dateHelper";
 import ServiceForm from "./serviceForm";
 import ServiceTable from "./serviceTable";
 
@@ -40,7 +41,6 @@ export default function Service() {
         setModalIsOpen(true);
     }
 
-
     return (
         <Content>
             <PageHeader
@@ -50,7 +50,8 @@ export default function Service() {
                 }}
                 adicionar='Novo Serviço'
                 exportar='Exportar'
-                btnExport={() => { }}
+                exportFilename='export_servico'
+                dataset={services.map(reg=>({'ID':reg.id_servico_ser, 'Descrição': reg.des_servico_ser, 'Observação': reg.txt_servico_ser, 'Data Criação': formatDate(reg.created_at)}))}
             />
             <ServiceTable data={services} handleEdit={handleEdit} />
             {modalIsOpen && <ServiceForm service={serviceEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} />}
