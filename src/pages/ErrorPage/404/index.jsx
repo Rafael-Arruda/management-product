@@ -3,7 +3,7 @@ import React from "react";
 
 
 import { useNavigate } from "react-router-dom";
-import Content from "../../components/Content";
+import Content from "../../../components/Content";
 import { Container, ErrorTitle, Link, Message } from "./style";
 
 export default function Page404() {

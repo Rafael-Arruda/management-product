@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
 //Pages
-import Page404 from "../pages/404";
 import Empty from "../pages/Empty";
 import Home from "../pages/Home";
 import Login from '../pages/Login';
@@ -13,6 +12,7 @@ import Material from '../pages/CadastroBase/Almoxarifado/Material';
 import Unidade from '../pages/CadastroBase/Almoxarifado/Unidade';
 import TipoServico from '../pages/CadastroBase/Servico/TipoServico';
 import ListIcons from '../pages/Debug/ListIcons';
+import Page404 from '../pages/ErrorPage/404';
 import Layout from '../pages/Layout';
 import Service from '../pages/Servico';
 
