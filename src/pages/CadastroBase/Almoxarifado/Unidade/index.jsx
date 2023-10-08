@@ -24,6 +24,7 @@ export default function Unidade() {
         try {
             const response = await getUnidade();
             setRegs(response);
+            setRegEdited({})
         } catch (error) {
             console.error("Erro ao buscar:", error);
         }
@@ -51,7 +52,7 @@ export default function Unidade() {
                 exportFilename='export_unidade'
                 dataset={regs.map(reg=>({'ID':reg.id_unidade_und, 'Descrição': reg.des_unidade_und, 'Descrição Reduzida': reg.des_reduz_unidade_und, 'Data Criação': formatDate(reg.created_at)}))}
             />
-            <UnidadeTable data={regs} handleEdit={handleEdit} />
+            <UnidadeTable data={regs} handleEdit={handleEdit} refresh={fetchRegs} />
             {modalIsOpen && <UnidadeForm reg={regEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} refresh={fetchRegs} />}
         </Content>
     )

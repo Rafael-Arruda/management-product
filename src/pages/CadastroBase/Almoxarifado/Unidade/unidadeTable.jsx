@@ -8,13 +8,13 @@ import { Button } from './style';
 
 
 // eslint-disable-next-line react/prop-types
-export default function UnidadeTable({ data = [], handleEdit }) {
+export default function UnidadeTable({ data = [], handleEdit, refresh }) {
 
   const handleDelete = async (id) => {
     confirmAlert({
       title: 'Tem certeza disso?',
       text: "O registro será inativado!",
-      handleFunction: ()=> deleteUnidade(id)
+      handleFunction: async () => {await deleteUnidade(id); await refresh()}
     })
   }
 
