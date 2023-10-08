@@ -38,11 +38,15 @@ const deleteUnidade = async (id) => {
 };
 const saveUnidade = async (obj) => {
     try {
-        // const response = await api.get("/service");
-        const success = false;
-        return success;
+        const response = await api.post("/unidade", obj, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return true;
     } catch (error) {
         console.error("Erro ao buscar:", error);
+        return false;
     }
 };
 

@@ -17,7 +17,7 @@ const schema = yup.object().shape({
 });
 
 
-export default function UnidadeForm({ reg, onClose, visible }) {
+export default function UnidadeForm({ reg, onClose, visible, refresh }) {
 
   const [form, setForm] = useState(reg ?? {});
   const [error, setError] = useState({});
@@ -39,6 +39,7 @@ export default function UnidadeForm({ reg, onClose, visible }) {
         console.log(JSON.stringify(form));
         const success = await saveUnidade(form);
         if(success){
+          await refresh();
           toast.success("Registro salvo!");
         } else {
 

@@ -20,16 +20,16 @@ export default function Unidade() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     // Chamada da API - Lista todos os materiais
+    const fetchRegs = async () => {
+        try {
+            const response = await getUnidade();
+            setRegs(response);
+        } catch (error) {
+            console.error("Erro ao buscar:", error);
+        }
+    };
     useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                const response = await getUnidade();
-                setRegs(response);
-            } catch (error) {
-                console.error("Erro ao buscar:", error);
-            }
-        };
-        fetchServices();
+        fetchRegs();
     }, []);
 
     const handleEdit = (id_unidade_und) => {
@@ -52,7 +52,7 @@ export default function Unidade() {
                 dataset={regs.map(reg=>({'ID':reg.id_unidade_und, 'Descrição': reg.des_unidade_und, 'Descrição Reduzida': reg.des_reduz_unidade_und, 'Data Criação': formatDate(reg.created_at)}))}
             />
             <UnidadeTable data={regs} handleEdit={handleEdit} />
-            {modalIsOpen && <UnidadeForm reg={regEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} />}
+            {modalIsOpen && <UnidadeForm reg={regEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} refresh={fetchRegs} />}
         </Content>
     )
 }
