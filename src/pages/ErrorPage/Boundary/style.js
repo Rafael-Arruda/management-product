@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+padding-bottom: 20%;
 width: 100dvw;
 height: 100dvh;
 display: flex;
@@ -15,7 +16,7 @@ export const ErrorTitle = styled.h1`
     justify-content: center;
     text-align: center;
     color:var(--primary);
-    font-size: 6rem;
+    font-size: 8rem;
 `;
 
 
