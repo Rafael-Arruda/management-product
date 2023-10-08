@@ -46,10 +46,10 @@ export default function ServiceForm({ service, onClose, visible }) {
               });
             })
 
-            const materialOptions = material.map(({ id_material_mte, des_material_mte, des_unidade, vlr_material_mte })=>{
+            const materialOptions = material.map(({ id_material_mte, des_material_mte, des_reduz_unidade_und, vlr_material_mte })=>{
               return ({
                 value: id_material_mte,
-                label: `${des_material_mte} - ${des_unidade}`,
+                label: `${des_material_mte} - ${des_reduz_unidade_und}`,
                 custom:{
                     value:vlr_material_mte,
                     type:'number'
