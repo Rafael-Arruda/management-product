@@ -30,7 +30,7 @@ export default function UnidadeTable({ data = [], handleEdit }) {
     },
     {
       name: "Descrição",
-      selector: ({ des_reduz_unidade_und }) => `${des_reduz_unidade_und}`,
+      selector: ({ des_unidade_und }) => `${des_unidade_und}`,
       sortable: true,
     },
     {
