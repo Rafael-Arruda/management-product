@@ -15,7 +15,7 @@ const paginationComponentOptions = {
 export default function Table({ columns, data = [] }) {
   const [filter, setFilter] = useState('');
   const results = filter == '' ? data : data.filter(e => {
-    return Object.values(e).join('_').search(filter) != -1;
+    return Object.values(e).join('_').toLowerCase().search(filter.toLowerCase()) != -1;
   })
   return (<StyledTable>
     <FilterTable defaultValue={filter} onChange={({ target }) => setFilter(target.value)} />
