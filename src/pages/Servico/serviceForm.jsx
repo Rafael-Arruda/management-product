@@ -45,7 +45,18 @@ export default function ServiceForm({ service, onClose, visible }) {
                 }
               });
             })
-            setFormData({employees, servicesType:serviceTypeOptions, material})
+
+            const materialOptions = material.map(({ id_material_mte, des_material_mte, des_unidade, vlr_material_mte })=>{
+              return ({
+                value: id_material_mte,
+                label: `${des_material_mte} - ${des_unidade}`,
+                custom:{
+                    value:vlr_material_mte,
+                    type:'number'
+                }
+              });
+            })
+            setFormData({employees, servicesType:serviceTypeOptions, material:materialOptions})
           })
       } catch (error) {
           console.error("Erro ao buscar:", error);
