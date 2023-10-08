@@ -24,6 +24,7 @@ function RoutesApp() {
                 <Route path="/empty" element={<Empty />} />
                 <Route path="/cadastroMaterial" element={<RegisterMaterial />} />
                 <Route path="/service" element={<Service />} />
+                <Route path="/servico/novo" element={<Service reg={{}} />} />
                 <Route path="/listicons" element={<ListIcons />} />
                 <Route path="/cadastro-base/servico/tipo-servico" element={<TipoServico />} />
                 <Route path="/cadastro-base/almoxarifado/unidade" element={<Unidade />} />

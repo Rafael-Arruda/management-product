@@ -13,7 +13,7 @@ import { formatDate } from "../../utils/dateHelper";
 import ServiceForm from "./serviceForm";
 import ServiceTable from "./serviceTable";
 
-export default function Service() {
+export default function Service({ reg = null }) {
 
     const [services, setServices] = useState([]);
 
@@ -34,6 +34,12 @@ export default function Service() {
         };
         fetchServices();
     }, []);
+    useEffect(() => {
+        if (reg != null) {
+            setServiceEdited(reg);
+            setModalIsOpen(true);
+        }
+    }, []);
 
     const handleEdit = (id_servico_ser) => {
         const edit = services.filter((reg) => reg.id_servico_ser == id_servico_ser)[0];
@@ -51,7 +57,7 @@ export default function Service() {
                 adicionar='Novo Serviço'
                 exportar='Exportar'
                 exportFilename='export_servico'
-                dataset={services.map(reg=>({'ID':reg.id_servico_ser, 'Descrição': reg.des_servico_ser, 'Observação': reg.txt_servico_ser, 'Data Criação': formatDate(reg.created_at)}))}
+                dataset={services.map(reg => ({ 'ID': reg.id_servico_ser, 'Descrição': reg.des_servico_ser, 'Observação': reg.txt_servico_ser, 'Data Criação': formatDate(reg.created_at) }))}
             />
             <ServiceTable data={services} handleEdit={handleEdit} />
             {modalIsOpen && <ServiceForm service={serviceEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} />}
