@@ -24,7 +24,6 @@ export default function UnidadeForm({ reg, onClose, visible, refresh }) {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
 
 
-
   const handleChangeValue = (event) => {
     const inputName = event.target.name.replace(/\[|\]/g, '');
     const value = event.target.value;

@@ -24,7 +24,7 @@ export default function Unidade() {
         try {
             const response = await getUnidade();
             setRegs(response);
-            setRegEdited({})
+            setModalIsOpen(false)
         } catch (error) {
             console.error("Erro ao buscar:", error);
         }
@@ -38,7 +38,6 @@ export default function Unidade() {
         setRegEdited(edit)
         setModalIsOpen(true);
     }
-
 
     return (
         <Content>
