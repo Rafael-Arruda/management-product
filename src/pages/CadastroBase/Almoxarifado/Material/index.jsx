@@ -20,16 +20,17 @@ export default function Material() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     // Chamada da API - Lista todos os materiais
+    const fetchRegs = async () => {
+        console.log("fetching")
+        try {
+            const response = await getMaterial();
+            setRegs(response);
+        } catch (error) {
+            console.error("Erro ao buscar:", error);
+        }
+    };
     useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                const response = await getMaterial();
-                setRegs(response);
-            } catch (error) {
-                console.error("Erro ao buscar:", error);
-            }
-        };
-        fetchServices();
+        fetchRegs();
     }, []);
 
     const handleEdit = (id_material_mte) => {
@@ -52,7 +53,7 @@ export default function Material() {
                 dataset={regs.map(reg=>({'ID':reg.id_material_mte, 'Descrição': reg.des_material_mte, 'Unidade': reg.des_unidade, 'Valor': reg.vlr_material_mte, 'Data Criação': formatDate(reg.created_at)}))}
             />
             <MaterialTable data={regs} handleEdit={handleEdit} />
-            {modalIsOpen && <MaterialForm reg={regEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} />}
+            {modalIsOpen && <MaterialForm reg={regEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} refresh={fetchRegs} />}
         </Content>
     )
 }

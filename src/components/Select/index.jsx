@@ -28,6 +28,9 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
       selected = [selected.at(-1)];
     }
     setSelectedOptions(selected);
+    if(limit == 1){
+      selected = selected[0].value
+    }
     const event = { target: { name: name, value: selected } };
     onChange(event)
   };

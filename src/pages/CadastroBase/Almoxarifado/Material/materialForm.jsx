@@ -19,7 +19,7 @@ const schema = yup.object().shape({
 });
 
 
-export default function MaterialForm({ reg, onClose, visible }) {
+export default function MaterialForm({ reg, onClose, visible, refresh }) {
 
   const [form, setForm] = useState(reg ?? {});
   const [formData, setFormData] = useState({});
@@ -50,6 +50,7 @@ export default function MaterialForm({ reg, onClose, visible }) {
 
   const handleChangeValue = (event) => {
     const inputName = event.target.name.replace(/\[|\]/g, '');
+    
     const value = event.target.value;
     setForm(prev => ({ ...prev, [inputName]: value }))
   }
@@ -62,6 +63,7 @@ export default function MaterialForm({ reg, onClose, visible }) {
         console.log(JSON.stringify(form));
         const success = await saveMaterial(form);
         if(success){
+          await refresh();
           toast.success("Registro salvo!");
         } else {
 
