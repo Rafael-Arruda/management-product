@@ -1,7 +1,8 @@
 import React from "react";
 
 import Table from "../../../../components/Table";
-import { deleteServiceType } from "../../../../services/serviceType";
+import { deleteUnidade } from "../../../../services/unidade";
+import { confirmAlert } from "../../../../utils/alert";
 import { formatDate } from "../../../../utils/dateHelper";
 import { Button } from './style';
 
@@ -10,7 +11,11 @@ import { Button } from './style';
 export default function UnidadeTable({ data = [], handleEdit }) {
 
   const handleDelete = async (id) => {
-    await deleteServiceType(id);
+    confirmAlert({
+      title: 'Tem certeza disso?',
+      text: "O registro será inativado!",
+      handleFunction: ()=> deleteUnidade(id)
+    })
   }
 
   const columns = [
