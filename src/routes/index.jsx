@@ -9,6 +9,7 @@ import Register from '../pages/Register';
 import Estoque from '../pages/CadastroBase/Almoxarifado/Estoque';
 import Material from '../pages/CadastroBase/Almoxarifado/Material';
 import Unidade from '../pages/CadastroBase/Almoxarifado/Unidade';
+import MetodoPagamento from '../pages/CadastroBase/Financeiro/MetodoPagamento';
 import TipoServico from '../pages/CadastroBase/Servico/TipoServico';
 import ListIcons from '../pages/Debug/ListIcons';
 import Page404 from '../pages/ErrorPage/404';
@@ -29,6 +30,7 @@ function RoutesApp() {
                 <Route path="/cadastro-base/almoxarifado/unidade" element={<Unidade />} />
                 <Route path="/cadastro-base/almoxarifado/material" element={<Material />} />
                 <Route path="/cadastro-base/almoxarifado/estoque" element={<Estoque />} />
+                <Route path="/cadastro-base/financeiro/metodo-pagamento" element={<MetodoPagamento />} />
             </Route>
 
             <Route path="/login" element={<Login />} />

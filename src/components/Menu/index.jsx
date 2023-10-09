@@ -34,7 +34,7 @@ export default function Menu({ menu }) {
                     <MenuTitle><Icon icon={menu.icon_menu_mnu} />{menu.des_menu_mnu}</MenuTitle>
                 </div>
             }
- 
+
             {showMenu && menu.children && menu.children.map((item, index) => (
                 <SubMenu key={index} submenu={item} />
             ))}
