@@ -5,7 +5,6 @@ import Empty from "../pages/Empty";
 import Home from "../pages/Home";
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import RegisterMaterial from "../pages/RegisterMaterial";
 
 import Estoque from '../pages/CadastroBase/Almoxarifado/Estoque';
 import Material from '../pages/CadastroBase/Almoxarifado/Material';
@@ -22,7 +21,7 @@ function RoutesApp() {
             <Route path="/" element={<Layout />} >
                 <Route path="/" element={<Home />} />
                 <Route path="/empty" element={<Empty />} />
-                <Route path="/cadastroMaterial" element={<RegisterMaterial />} />
+                {/* <Route path="/cadastroMaterial" element={<RegisterMaterial />} /> */}
                 <Route path="/service" element={<Service />} />
                 <Route path="/servico/novo" element={<Service reg={{}} />} />
                 <Route path="/listicons" element={<ListIcons />} />
