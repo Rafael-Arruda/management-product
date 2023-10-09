@@ -16,7 +16,7 @@ const schema = yup.object().shape({
 });
 
 
-export default function UnidadeForm({ reg, onClose, visible, refresh }) {
+export default function MetodoPagamentoForm({ reg, onClose, visible, refresh }) {
 
   const [form, setForm] = useState(reg ?? {});
   const [error, setError] = useState({});
