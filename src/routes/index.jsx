@@ -11,6 +11,7 @@ import Material from '../pages/CadastroBase/Almoxarifado/Material';
 import Unidade from '../pages/CadastroBase/Almoxarifado/Unidade';
 import MetodoPagamento from '../pages/CadastroBase/Financeiro/MetodoPagamento';
 import InstituicaoPagamento from '../pages/CadastroBase/Financeiro/InstituicaoPagamento';
+import CentroCusto from '../pages/CadastroBase/Perfil/CentroCusto';
 import ListIcons from '../pages/Debug/ListIcons';
 import Page404 from '../pages/ErrorPage/404';
 import Layout from '../pages/Layout';
@@ -32,6 +33,7 @@ function RoutesApp() {
                 <Route path="/cadastro-base/almoxarifado/estoque" element={<Estoque />} />
                 <Route path="/cadastro-base/financeiro/metodo-pagamento" element={<MetodoPagamento />} />
                 <Route path="/cadastro-base/financeiro/instituicao-pagamento" element={<InstituicaoPagamento />} />
+                <Route path="/cadastro-base/perfil/centro-custo" element={<CentroCusto />} />
             </Route>
 
             <Route path="/login" element={<Login />} />
