@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import ButtonSubmit from "../../../../components/Buttons/ButtonSubmit";
 import { FormGroup } from "./style";
 import { saveFuncionario } from "../../../../services/funcionario";
+import { getCargo } from "../../../../services/cargo";
 
 const schema = yup.object().shape({
   desc_funcionario_tfu: yup.string().min(1).required(),
@@ -21,6 +22,7 @@ const schema = yup.object().shape({
 export default function FuncionarioForm({ reg, onClose, visible, refresh }) {
 
   const [form, setForm] = useState(reg ?? {});
+  const [formData, setFormData] = useState({});
   const [error, setError] = useState({});
   const [loadingSubmit, setLoadingSubmit] = useState(false);
 
