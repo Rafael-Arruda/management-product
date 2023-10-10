@@ -17,6 +17,7 @@ import ListIcons from '../pages/Debug/ListIcons';
 import Page404 from '../pages/ErrorPage/404';
 import Layout from '../pages/Layout';
 import Service from '../pages/Servico';
+import Funcionario from '../pages/CadastroBase/Perfil/Funcionario';
 
 function RoutesApp() {
     return (
@@ -36,6 +37,7 @@ function RoutesApp() {
                 <Route path="/cadastro-base/financeiro/instituicao-pagamento" element={<InstituicaoPagamento />} />
                 <Route path="/cadastro-base/perfil/centro-custo" element={<CentroCusto />} />
                 <Route path="/cadastro-base/perfil/cargo" element={<Cargo />} />
+                <Route path="/cadastro-base/perfil/funcionario" element={<Funcionario />} />
             </Route>
 
             <Route path="/login" element={<Login />} />
