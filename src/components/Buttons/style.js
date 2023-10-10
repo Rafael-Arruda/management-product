@@ -1,9 +1,16 @@
 import styled, { keyframes } from "styled-components";
 
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+`;
+
 export const Button = styled.button`
   background-color: var(--primary-bg-color);
   min-width: 124px;
-  margin: 10px;
+  margin: 10px 0px;
   color: white;
   padding: 10px;
   border: none;

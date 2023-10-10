@@ -9,6 +9,7 @@ import TipoServico from '../pages/CadastroBase/Servico/TipoServico';
 import Estoque from '../pages/CadastroBase/Almoxarifado/Estoque';
 import Material from '../pages/CadastroBase/Almoxarifado/Material';
 import Unidade from '../pages/CadastroBase/Almoxarifado/Unidade';
+import Cargo from '../pages/CadastroBase/Perfil/Cargo';
 import MetodoPagamento from '../pages/CadastroBase/Financeiro/MetodoPagamento';
 import InstituicaoPagamento from '../pages/CadastroBase/Financeiro/InstituicaoPagamento';
 import CentroCusto from '../pages/CadastroBase/Perfil/CentroCusto';
@@ -34,6 +35,7 @@ function RoutesApp() {
                 <Route path="/cadastro-base/financeiro/metodo-pagamento" element={<MetodoPagamento />} />
                 <Route path="/cadastro-base/financeiro/instituicao-pagamento" element={<InstituicaoPagamento />} />
                 <Route path="/cadastro-base/perfil/centro-custo" element={<CentroCusto />} />
+                <Route path="/cadastro-base/perfil/cargo" element={<Cargo />} />
             </Route>
 
             <Route path="/login" element={<Login />} />
