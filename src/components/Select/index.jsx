@@ -20,6 +20,7 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [visibled, setVisibled] = useState(true);
 
+  // console.log(selectedOptions)
   useEffect(() => {
     // preenche quando existir um unico registro
     if(options?.length == 1){
@@ -29,12 +30,13 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
 
     // preenche com o valor default
     if(typeof defaultValue == 'number'){
-      // console.log('aaaa')
       const selected = options.filter(reg => defaultValue == reg.value)
       setSelectedOptions(selected);
-    }else{
-      // console.log('bbb')
+    }else if(defaultValue.length > 0 && typeof defaultValue[0] == 'number'){
       const selected = options.filter(reg => defaultValue.includes(reg.value))
+      setSelectedOptions(selected);
+    }else{
+      const selected = defaultValue;
       setSelectedOptions(selected);
     }
   }, [options])
@@ -50,14 +52,26 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
     const event = { target: { name: name, value: selected } };
     onChange(event)
   };
-  const handleChangeCustomValue = ({customValue, value}) => {
+  const handleChangeCustomValue = ({customValue, value, column}) => {
+    customValue = parseCurrencyToInt(customValue);
+    // console.log(customValue, value, column)
     const newSelectedOptions = selectedOptions.map(reg => {
       if(reg.value === value){
-        customValue = parseCurrencyToInt(customValue);
-        reg.custom.value = customValue;
+        // console.log('value', value)
+        reg.custom = reg.custom.map(col => {
+
+        // console.log('col.column == column', col.column , column, col)
+          if(col.column == column){
+            // console.log('col.column == column', col.column, column, col.value, customValue)
+            col.value = customValue
+          }
+          return col;
+        });
       }
       return reg;
     })
+    
+    console.log('newSelectedOptions',newSelectedOptions)
     setSelectedOptions(newSelectedOptions);
     const event = { target: { name: name, value: newSelectedOptions } };
     onChange(event)
@@ -84,20 +98,21 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
         {
           visibled &&
           <ul>
-            {selectedOptions.map((option) => (
-              <LiSelectBox key={option.value}>{option.label}
+            {selectedOptions.map((option) => {
+              return (
+              <LiSelectBox key={`selecionado_${name}_${option.value}`}>{option.label}
                 {
                   option.custom && <>
                   {
-                    option.custom.map(reg=>(<BoxFormSelectBox key={`${reg.value}_${reg.column}`}>
+                    option.custom.map(reg=>(<BoxFormSelectBox key={`box_input_${name}_${option.value}_${reg.value}_${reg.column}`}>
                       <label>{reg?.label}</label>
-                    <Input type={reg.type} defaultValue={reg.value} mask={reg.mask ?? false} prefixDefault={reg.prefixDefault ?? ''} onChange={(e)=>handleChangeCustomValue({customValue: e.target.value, value: option.value})}/>
+                    <Input type={reg.type} defaultValue={reg.value} mask={reg.mask ?? false} prefixDefault={reg.prefixDefault ?? ''} onBlur={(e)=>handleChangeCustomValue({customValue: e.target.value, value: option.value, column: reg.column})}/>
                     </BoxFormSelectBox>))
                   }
                   </>
                 }
               </LiSelectBox>
-            ))}
+            )})}
           </ul>
         }
       </SelectedBox>

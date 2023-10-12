@@ -110,6 +110,7 @@ export default function ServiceForm({ service, onClose, visible }) {
     setTimeout(async () => {
       try {
         await schema.validate(form);
+        console.log(form);
         const formFactory = {
           txt_servico_ser: '.',
           id_funcionario_servico_ser: null,
@@ -121,19 +122,23 @@ export default function ServiceForm({ service, onClose, visible }) {
         const formData = { ...formFactory, ...form }
         formData.materiais = formData.materiais.map(reg => {
           const regQtd = reg.custom.filter(({ column }) => column == "qtd_material_rsm");
-          const regVlr = reg.custom.filter(({ column }) => column == "vlr_material_mte");
+          const regVlr = reg.custom.filter(({ column }) => ["vlr_material_mte","vlr_material_rsm"].includes(column));
+
           return {
             id_material_mte: reg.value,
-            vlr_material_rsm: regVlr?.[0].value ?? 0,
-            qtd_material_rsm: regQtd?.[0].value ?? 1
+            vlr_material_rsm: parseInt(regVlr?.[0].value) ?? 0,
+            qtd_material_rsm: parseInt(regQtd?.[0].value) ?? 1
           }
         });
 
         formData.tipos_servico = formData.tipos_servico.map(reg => {
-          const regVlr = reg.custom.filter(({ column }) => column == "vlr_servico_tipo_stp");
+          // console.log(reg)
+          console.log('reg',reg)
+          const regVlr = parseInt(reg.custom[0].value); // [0]
+          // console.log('formData.materiais', regVlr)
           return {
             id_servico_tipo_stp: reg.value,
-            vlr_tipo_servico_rst: regVlr?.[0].value ?? 0
+            vlr_tipo_servico_rst: regVlr ?? 0
           };
         })
 
@@ -223,7 +228,7 @@ export default function ServiceForm({ service, onClose, visible }) {
         <label>Serviços</label>
         <SelectBox
           options={formData.servicesType ?? []}
-          defaultValue={form?.tipo_servico ?? []}
+          defaultValue={form?.tipos_servico ?? []}
           name='tipos_servico[]'
           onChange={handleChangeValue}
           error={error?.tipo_servico ?? false}
