@@ -110,7 +110,7 @@ export default function ServiceForm({ service, onClose, visible }) {
     setTimeout(async () => {
       try {
         await schema.validate(form);
-        console.log(form);
+        // console.log(form);
         const formFactory = {
           txt_servico_ser: '.',
           id_funcionario_servico_ser: null,
@@ -133,7 +133,7 @@ export default function ServiceForm({ service, onClose, visible }) {
 
         formData.tipos_servico = formData.tipos_servico.map(reg => {
           // console.log(reg)
-          console.log('reg',reg)
+          // console.log('reg',reg)
           const regVlr = parseInt(reg.custom[0].value); // [0]
           // console.log('formData.materiais', regVlr)
           return {

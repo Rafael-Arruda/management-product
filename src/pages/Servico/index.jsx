@@ -43,7 +43,6 @@ export default function Service({ reg = null }) {
 
     const handleEdit = (id_servico_ser) => {
         const edit = services.filter((reg) => reg.id_servico_ser == id_servico_ser)[0];
-        console.log(edit)
         const newEdit = {...edit};
         newEdit.materiais = newEdit.materiais.map((reg) => {
             return ({

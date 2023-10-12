@@ -71,7 +71,7 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
       return reg;
     })
     
-    console.log('newSelectedOptions',newSelectedOptions)
+    // console.log('newSelectedOptions',newSelectedOptions)
     setSelectedOptions(newSelectedOptions);
     const event = { target: { name: name, value: newSelectedOptions } };
     onChange(event)
