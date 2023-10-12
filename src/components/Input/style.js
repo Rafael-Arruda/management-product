@@ -1,12 +1,24 @@
 import styled from "styled-components";
 
 
+export const BoxInput = styled.div`
+  display: flex;
+  flex-direction: row;
+  & span{
+    position: relative;
+    margin-top: 5px;
+    left: 32px;
+  }
+`;
 export const InputForm = styled.input`
-  margin-bottom: 10px;
   padding: 5px 8px;
+  padding-left: ${props=> props.alignRight ? "36px" : "8px"};
   height: 32px;
   border: 1px solid ${props => props.error ? "#f00" : "#ccc"};
   border-radius: 4px;
+  width: 100%;
+
+  text-align: ${props=> props.alignRight ? "right" : "left"};
 `;
 export const InputError = styled.span`
   color: #a00;

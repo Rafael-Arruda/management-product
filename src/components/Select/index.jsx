@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 
+import { parseCurrencyToInt } from '../../utils/format';
 import Icon from '../Icons';
 import Input from '../Input';
 import {
@@ -15,8 +16,7 @@ import {
 
 const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) => {
 
-
-  // console.log(defaultValue);
+  // console.log(defaultValue)
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [visibled, setVisibled] = useState(true);
 
@@ -29,9 +29,11 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
 
     // preenche com o valor default
     if(typeof defaultValue == 'number'){
+      // console.log('aaaa')
       const selected = options.filter(reg => defaultValue == reg.value)
       setSelectedOptions(selected);
     }else{
+      // console.log('bbb')
       const selected = options.filter(reg => defaultValue.includes(reg.value))
       setSelectedOptions(selected);
     }
@@ -51,6 +53,7 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
   const handleChangeCustomValue = ({customValue, value}) => {
     const newSelectedOptions = selectedOptions.map(reg => {
       if(reg.value === value){
+        customValue = parseCurrencyToInt(customValue);
         reg.custom.value = customValue;
       }
       return reg;
@@ -59,7 +62,6 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
     const event = { target: { name: name, value: newSelectedOptions } };
     onChange(event)
   }
-
   return (
     <>
       <Box error={error}>
@@ -89,7 +91,7 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
                   {
                     option.custom.map(reg=>(<BoxFormSelectBox key={`${reg.value}_${reg.column}`}>
                       <label>{reg?.label}</label>
-                    <Input type={reg.type} defaultValue={reg.value} onChange={(e)=>handleChangeCustomValue({customValue: e.target.value, value: option.value})}/>
+                    <Input type={reg.type} defaultValue={reg.value} mask={reg.mask ?? false} prefixDefault={reg.prefixDefault ?? ''} onChange={(e)=>handleChangeCustomValue({customValue: e.target.value, value: option.value})}/>
                     </BoxFormSelectBox>))
                   }
                   </>

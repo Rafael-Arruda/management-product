@@ -50,7 +50,8 @@ export default function ServiceForm({ service, onClose, visible }) {
                   label: 'Valor',
                   column: 'vlr_servico_tipo_stp',
                   value: vlr_servico_tipo_stp,
-                  type: 'number'
+                  type: 'number',
+                  mask: 'currency'
                 }]
               });
             })
@@ -60,6 +61,7 @@ export default function ServiceForm({ service, onClose, visible }) {
                 value: id_material_mte,
                 label: `${des_material_mte} - ${des_reduz_unidade_und}`,
                 custom: [{
+                  prefixDefault: des_reduz_unidade_und,
                   label: 'Quantidade',
                   column: 'qtd_material_rsm',
                   value: 1,
@@ -69,7 +71,8 @@ export default function ServiceForm({ service, onClose, visible }) {
                   label: 'Valor Unitário',
                   column: 'vlr_material_mte',
                   value: vlr_material_mte,
-                  type: 'number'
+                  type: 'number',
+                  mask: 'currency'
                 }]
               });
             })
@@ -121,7 +124,6 @@ export default function ServiceForm({ service, onClose, visible }) {
           const regVlr = reg.custom.filter(({ column }) => column == "vlr_material_mte");
           return {
             id_material_mte: reg.value,
-            des_material_mte: "Material A",
             vlr_material_rsm: regVlr?.[0].value ?? 0,
             qtd_material_rsm: regQtd?.[0].value ?? 1
           }
