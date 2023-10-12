@@ -2,19 +2,19 @@
 import api from "./api";
 
 
-const getCentroCusto = async () => {
+const getCargo = async () => {
     try {
-        const response = await api.get("/centroCusto");
+        const response = await api.get("/cargo");
         // const response = [
         //     {
-        //         id_centro_custo_cco:1,
-        //         des_centro_custo_cco:'CEntro de Custo 1',
+        //         id_cargo_tcg:1,
+        //         desc_metodo_pagamento_tmp:'Pix',
         //         created_at:'2023-01-01',
         //         updated_at:'2023-01-01'
         //     },
         //     {
-        //         id_centro_custo_cco:2,
-        //         des_centro_custo_cco:'Centro de Custo 2',
+        //         id_cargo_tcg:2,
+        //         desc_metodo_pagamento_tmp:'Dinheiro',
         //         created_at:'2023-01-01',
         //         updated_at:'2023-01-01'
         //     },
@@ -25,24 +25,24 @@ const getCentroCusto = async () => {
     }
 };
 
-const deleteCentroCusto = async (id) => {
+const deleteCargo = async (id) => {
     try {
-        await api.delete(`/centroCusto/${id}`)
+        await api.delete(`/cargo/${id}`)
         return true
     } catch (error) {
         console.error("Erro ao buscar:", error);
     }
 };
-const saveCentroCusto = async (obj) => {
+const saveCargo = async (obj) => {
     try {
-        if(obj.id_centro_custo_cco){
-            await api.put(`/centroCusto/${obj.id_centro_custo_cco}`, obj, {
+        if(obj.id_cargo_tcg){
+            await api.put(`/cargo/${obj.id_cargo_tcg}`, obj, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
         }else{
-            await api.post("/centroCusto", obj, {
+            await api.post("/cargo", obj, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -56,5 +56,5 @@ const saveCentroCusto = async (obj) => {
 };
 
 
-export { deleteCentroCusto, getCentroCusto, saveCentroCusto };
+export { deleteCargo, getCargo, saveCargo };
 

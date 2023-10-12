@@ -2,19 +2,19 @@
 import api from "./api";
 
 
-const getCentroCusto = async () => {
+const getInstituicaoPagamento = async () => {
     try {
-        const response = await api.get("/centroCusto");
+        const response = await api.get("/instituicaoPagamento");
         // const response = [
         //     {
-        //         id_centro_custo_cco:1,
-        //         des_centro_custo_cco:'CEntro de Custo 1',
+        //         id_instituicao_pagamento_tip:1,
+        //         desc_metodo_pagamento_tmp:'Pix',
         //         created_at:'2023-01-01',
         //         updated_at:'2023-01-01'
         //     },
         //     {
-        //         id_centro_custo_cco:2,
-        //         des_centro_custo_cco:'Centro de Custo 2',
+        //         id_instituicao_pagamento_tip:2,
+        //         desc_metodo_pagamento_tmp:'Dinheiro',
         //         created_at:'2023-01-01',
         //         updated_at:'2023-01-01'
         //     },
@@ -25,24 +25,24 @@ const getCentroCusto = async () => {
     }
 };
 
-const deleteCentroCusto = async (id) => {
+const deleteInstituicaoPagamento = async (id) => {
     try {
-        await api.delete(`/centroCusto/${id}`)
+        await api.delete(`/instituicaoPagamento/${id}`)
         return true
     } catch (error) {
         console.error("Erro ao buscar:", error);
     }
 };
-const saveCentroCusto = async (obj) => {
+const saveInstituicaoPagamento = async (obj) => {
     try {
-        if(obj.id_centro_custo_cco){
-            await api.put(`/centroCusto/${obj.id_centro_custo_cco}`, obj, {
+        if(obj.id_instituicao_pagamento_tip){
+            await api.put(`/instituicaoPagamento/${obj.id_instituicao_pagamento_tip}`, obj, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
         }else{
-            await api.post("/centroCusto", obj, {
+            await api.post("/instituicaoPagamento", obj, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -56,5 +56,5 @@ const saveCentroCusto = async (obj) => {
 };
 
 
-export { deleteCentroCusto, getCentroCusto, saveCentroCusto };
+export { deleteInstituicaoPagamento, getInstituicaoPagamento, saveInstituicaoPagamento };
 

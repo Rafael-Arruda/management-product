@@ -5,15 +5,19 @@ import Empty from "../pages/Empty";
 import Home from "../pages/Home";
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-
+import TipoServico from '../pages/CadastroBase/Servico/TipoServico';
 import Estoque from '../pages/CadastroBase/Almoxarifado/Estoque';
 import Material from '../pages/CadastroBase/Almoxarifado/Material';
 import Unidade from '../pages/CadastroBase/Almoxarifado/Unidade';
-import TipoServico from '../pages/CadastroBase/Servico/TipoServico';
+import Cargo from '../pages/CadastroBase/Perfil/Cargo';
+import MetodoPagamento from '../pages/CadastroBase/Financeiro/MetodoPagamento';
+import InstituicaoPagamento from '../pages/CadastroBase/Financeiro/InstituicaoPagamento';
+import CentroCusto from '../pages/CadastroBase/Perfil/CentroCusto';
 import ListIcons from '../pages/Debug/ListIcons';
 import Page404 from '../pages/ErrorPage/404';
 import Layout from '../pages/Layout';
 import Service from '../pages/Servico';
+import Funcionario from '../pages/CadastroBase/Perfil/Funcionario';
 
 function RoutesApp() {
     return (
@@ -29,6 +33,11 @@ function RoutesApp() {
                 <Route path="/cadastro-base/almoxarifado/unidade" element={<Unidade />} />
                 <Route path="/cadastro-base/almoxarifado/material" element={<Material />} />
                 <Route path="/cadastro-base/almoxarifado/estoque" element={<Estoque />} />
+                <Route path="/cadastro-base/financeiro/metodo-pagamento" element={<MetodoPagamento />} />
+                <Route path="/cadastro-base/financeiro/instituicao-pagamento" element={<InstituicaoPagamento />} />
+                <Route path="/cadastro-base/perfil/centro-custo" element={<CentroCusto />} />
+                <Route path="/cadastro-base/perfil/cargo" element={<Cargo />} />
+                <Route path="/cadastro-base/perfil/funcionario" element={<Funcionario />} />
             </Route>
 
             <Route path="/login" element={<Login />} />
