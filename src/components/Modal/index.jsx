@@ -3,7 +3,8 @@ import {
   DeviderHorizontal,
   ModalContainer,
   ModalContent,
-  ModalHeader
+  ModalHeader,
+  ModalScroll
 } from "./style";
 
 
@@ -13,6 +14,7 @@ export default function Modal({ title, onClose, visible, children }) {
   return (
     <ModalContainer>
       <ModalContent>
+        <ModalScroll>
         <ModalHeader>
           <h2>{title}</h2>
           <button onClick={onClose}>
@@ -24,6 +26,7 @@ export default function Modal({ title, onClose, visible, children }) {
         <DeviderHorizontal />
         {children}
         <DeviderHorizontal />
+        </ModalScroll>
       </ModalContent>
     </ModalContainer>
   )

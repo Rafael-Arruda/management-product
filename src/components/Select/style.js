@@ -45,3 +45,14 @@ export const VisibledPointer = styled.div`
   display: flex;
   justify-content: center;
 `;
+export const LiSelectBox = styled.li`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+export const BoxFormSelectBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 30%;
+`;

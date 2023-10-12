@@ -2,9 +2,9 @@
 import api from "./api";
 
 
-const getServices = async () => {
+const getCliente = async () => {
     try {
-        const response = await api.get("/servico");
+        const response = await api.get("/cliente");
         // const response = [
         //     {
         //         id_servico_ser: 1,
@@ -26,20 +26,14 @@ const getServices = async () => {
         console.error("Erro ao buscar:", error);
     }
 };
-const saveServices = async (obj) => {
+const saveCliente = async (obj) => {
     try {
         // const response = await api.get("/service");
-        if(obj.id_servico_ser){
-            const response = await api.put(`/servico/${obj.id_servico_ser}`, obj);
-            return response;
-        }else{
-            const response = await api.post("/servico", obj);
-            return response;
-        }
+        const response = await api.post("/cliente", obj);
+        return response;
     } catch (error) {
         console.error("Erro ao buscar:", error);
-        return { error: error.message, message: error?.response?.data };
     }
 };
 
-export { getServices, saveServices };
+export { getCliente, saveCliente };

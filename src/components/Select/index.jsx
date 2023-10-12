@@ -5,8 +5,10 @@ import Icon from '../Icons';
 import Input from '../Input';
 import {
   Box,
+  BoxFormSelectBox,
   InputError,
   Label,
+  LiSelectBox,
   SelectedBox,
   VisibledPointer
 } from "./style";
@@ -19,8 +21,17 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
   const [visibled, setVisibled] = useState(true);
 
   useEffect(() => {
-    const selected = options.filter(reg => defaultValue.includes(reg.value))
-    setSelectedOptions(selected);
+    if(options?.length == 1){
+      setSelectedOptions(options);
+      return;
+    }
+    if(typeof defaultValue == 'number'){
+      const selected = options.filter(reg => defaultValue == reg.value)
+      setSelectedOptions(selected);
+    }else{
+      const selected = options.filter(reg => defaultValue.includes(reg.value))
+      setSelectedOptions(selected);
+    }
   }, [options])
 
   const handleSelectChange = (selected) => {
@@ -69,7 +80,18 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
           visibled &&
           <ul>
             {selectedOptions.map((option) => (
-              <li key={option.value}>{option.label} {option.custom && <Input type={option.custom.type} defaultValue={option.custom.value} onChange={(e)=>handleChangeCustomValue({customValue: e.target.value, value: option.value})}/> }</li>
+              <LiSelectBox key={option.value}>{option.label}
+                {
+                  option.custom && <>
+                  {
+                    option.custom.map(reg=>(<BoxFormSelectBox key={`${reg.value}_${reg.column}`}>
+                      <label>{reg?.label}</label>
+                    <Input type={reg.type} defaultValue={reg.value} onChange={(e)=>handleChangeCustomValue({customValue: e.target.value, value: option.value})}/>
+                    </BoxFormSelectBox>))
+                  }
+                  </>
+                }
+              </LiSelectBox>
             ))}
           </ul>
         }

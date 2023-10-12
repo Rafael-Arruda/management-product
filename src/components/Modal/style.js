@@ -26,6 +26,10 @@ export const ModalContent = styled.div`
   width: 500px;
   height: auto;
 `;
+export const ModalScroll = styled.div`
+  overflow-y: scroll !important;
+  max-height: 85dvh;
+`;
 
 export const ModalHeader = styled.div`
     display: flex;

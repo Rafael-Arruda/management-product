@@ -57,7 +57,7 @@ export default function Service({ reg = null }) {
                 adicionar='Novo Serviço'
                 exportar='Exportar'
                 exportFilename='export_servico'
-                dataset={services.map(reg => ({ 'ID': reg.id_servico_ser, 'Descrição': reg.des_servico_ser, 'Observação': reg.txt_servico_ser, 'Data Criação': formatDate(reg.created_at) }))}
+                dataset={services.map(reg => ({ 'ID': reg.id_servico_ser, 'Observação': reg.txt_servico_ser, 'Data Criação': formatDate(reg.created_at) }))}
             />
             <ServiceTable data={services} handleEdit={handleEdit} />
             {modalIsOpen && <ServiceForm service={serviceEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} />}

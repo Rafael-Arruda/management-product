@@ -2,9 +2,9 @@
 import api from "./api";
 
 
-const getEmployee = async () => {
+const getCentroCusto = async () => {
     try {
-        const response = await api.get("/funcionario");
+        const response = await api.get("/centroCusto");
         // const response = [
         //     {
         //         value: 1,
@@ -22,4 +22,4 @@ const getEmployee = async () => {
 };
 
 
-export { getEmployee };
+export { getCentroCusto };
