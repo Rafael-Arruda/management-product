@@ -21,10 +21,13 @@ const SelectBox = ({ options, defaultValue, name, onChange, error, limit = 0 }) 
   const [visibled, setVisibled] = useState(true);
 
   useEffect(() => {
+    // preenche quando existir um unico registro
     if(options?.length == 1){
-      setSelectedOptions(options);
+      handleSelectChange(options);
       return;
     }
+
+    // preenche com o valor default
     if(typeof defaultValue == 'number'){
       const selected = options.filter(reg => defaultValue == reg.value)
       setSelectedOptions(selected);
