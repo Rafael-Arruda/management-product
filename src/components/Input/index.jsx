@@ -46,7 +46,7 @@ export default function Input({ type, mask, prefixDefault= '', defaultValue, onC
       onChange={onChange}
       error={!!error}
       onKeyUp={handleKeyUp}
-      alignRight={prefix != ''}
+      alignright={prefix != '' ? 1 : 0}
       {...props}
     />
     {!!error && <InputError>{`${error[0].toUpperCase()}${error.substring(1)}`}</InputError>}
