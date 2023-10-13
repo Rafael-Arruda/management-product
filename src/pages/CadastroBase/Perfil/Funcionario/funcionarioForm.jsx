@@ -11,6 +11,7 @@ import ButtonSubmit from "../../../../components/Buttons/ButtonSubmit";
 import { FormGroup } from "./style";
 import { saveFuncionario } from "../../../../services/funcionario";
 import { getCargo } from "../../../../services/cargo";
+import SelectBox from "../../../../components/Select";
 
 const schema = yup.object().shape({
   desc_funcionario_tfu: yup.string().min(1).required(),
@@ -65,7 +66,7 @@ export default function FuncionarioForm({ reg, onClose, visible, refresh }) {
           toast.success("Registro salvo!");
         } else {
 
-          toast.error("aaaa!");
+          toast.error("Erro ao cadastrar!");
         }
 
         setError({});
@@ -86,17 +87,17 @@ export default function FuncionarioForm({ reg, onClose, visible, refresh }) {
 
   return (
     <Modal title={form.id_funcionario_tfu ? "Edição" : "Cadastro"} onClose={onClose} visible={visible} >
-      {/* <FormGroup>
+      <FormGroup>
         <label>Cargo</label>
         <SelectBox
           options={formData.cargoOptions ?? []}
-          defaultValue={form?.id_cargo_tcg ?? []}
-          name='id_cargo_tcg[]'
+          defaultValue={form?.id_funcionario_cargo_tfu ?? []}
+          name='id_funcionario_cargo_tfu[]'
           onChange={handleChangeValue}
-          error={error?.id_cargo_tcg ?? false}
+          error={error?.id_funcionario_cargo_tfu ?? false}
           limit={1}
         />
-      </FormGroup> */}
+      </FormGroup>
       <FormGroup>
         <label>Nome Funcionário</label>
         <Input

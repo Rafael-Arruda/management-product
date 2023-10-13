@@ -34,24 +34,18 @@ const deleteFuncionario = async (id) => {
 };
 const saveFuncionario = async (obj) => {
     try {
-        if(obj.id_funcionario_tfu){
-            await api.put(`/funcionario/${obj.id_funcionario_tfu}`, obj, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        }else{
-            await api.post("/funcionario", obj, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        }
-        return true;
+        console.log(obj)
+        const response = await api.post("/funcionario", obj, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+        const success = true;
+        return success;
     } catch (error) {
         console.error("Erro ao buscar:", error);
-        return false;
     }
+
 };
 
 
