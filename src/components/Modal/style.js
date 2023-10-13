@@ -28,6 +28,7 @@ export const ModalContent = styled.div`
 `;
 export const ModalScroll = styled.div`
   overflow-y: auto !important;
+  overflow-x: hidden;
   max-height: 85dvh;
 `;
 
