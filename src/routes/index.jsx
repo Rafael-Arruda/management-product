@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 //Pages
+import Agendamento from '../pages/Agendamento';
 import Baixa from '../pages/Almoxarifado/Material';
 import Estoque from '../pages/CadastroBase/Almoxarifado/Estoque';
 import Material from '../pages/CadastroBase/Almoxarifado/Material';
@@ -48,6 +49,12 @@ function RoutesApp() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<Page404 />} />
+            <Route path="/agendamento" >
+                <Route path="/agendamento/:empresa" element={<Agendamento />} />
+                
+                <Route path="/agendamento" element={<Page404 />} />
+                <Route path="*" element={<Page404 />} />
+            </Route>
         </Routes>
     )
 }
