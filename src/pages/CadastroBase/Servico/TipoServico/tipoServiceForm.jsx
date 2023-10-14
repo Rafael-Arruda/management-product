@@ -13,7 +13,7 @@ import { FormGroup } from "./style";
 
 const schema = yup.object().shape({
   vlr_servico_tipo_stp: yup.number().required().positive().integer(),
-  des_servico_tipo_stp: yup.string().min().required(),
+  des_servico_tipo_stp: yup.string().min(1).required(),
 });
 
 
