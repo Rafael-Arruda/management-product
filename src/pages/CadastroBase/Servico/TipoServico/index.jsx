@@ -47,7 +47,7 @@ export default function TipoServico() {
                 exportFilename='export_tipo_servico'
                 dataset={regs.map(reg=>({'ID':reg.id_servico_tipo_stp, 'Nome': reg.des_servico_tipo_stp, 'Valor': reg.vlr_servico_tipo_stp, 'Data Criação': formatDate(reg.created_at)}))}
             />
-            <TipoServicoTable data={regs} handleEdit={handleEdit} />
+            <TipoServicoTable refresh={fetchRegs} data={regs} handleEdit={handleEdit} />
             {modalIsOpen && <TipoServiceForm reg={regEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} refresh={fetchRegs} />}
         </Content>
     )
