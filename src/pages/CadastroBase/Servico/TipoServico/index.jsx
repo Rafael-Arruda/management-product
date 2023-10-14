@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
 
-
-
-
-
 import Content from "../../../../components/Content";
 import PageHeader from "../../../../components/PageHeader";
 
@@ -19,17 +15,17 @@ export default function TipoServico() {
     const [regEdited, setRegEdited] = useState({});
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    // Chamada da API - Lista todos os materiais
+    const fetchRegs = async () => {
+        try {
+            const response = await getServiceType();
+            setRegs(response);
+            setModalIsOpen(false)
+        } catch (error) {
+            console.error("Erro ao buscar:", error);
+        }
+    };
     useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                const response = await getServiceType();
-                setRegs(response);
-            } catch (error) {
-                console.error("Erro ao buscar:", error);
-            }
-        };
-        fetchServices();
+        fetchRegs();
     }, []);
 
     const handleEdit = (id_servico_tipo_stp) => {
@@ -49,10 +45,10 @@ export default function TipoServico() {
                 adicionar='Novo Tipo de Serviço'
                 exportar='Exportar'
                 exportFilename='export_tipo_servico'
-                dataset={regs.map(reg=>({'ID':reg.id_servico_tipo_stp, 'Nome': reg.des_servico_tipo_stp, 'Valor': reg.val_servico_tipo_stp, 'Data Criação': formatDate(reg.created_at)}))}
+                dataset={regs.map(reg=>({'ID':reg.id_servico_tipo_stp, 'Nome': reg.des_servico_tipo_stp, 'Valor': reg.vlr_servico_tipo_stp, 'Data Criação': formatDate(reg.created_at)}))}
             />
-            <TipoServicoTable data={regs} handleEdit={handleEdit} />
-            {modalIsOpen && <TipoServiceForm reg={regEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} />}
+            <TipoServicoTable refresh={fetchRegs} data={regs} handleEdit={handleEdit} />
+            {modalIsOpen && <TipoServiceForm reg={regEdited} onClose={() => { setModalIsOpen(false) }} visible={modalIsOpen} refresh={fetchRegs} />}
         </Content>
     )
 }
