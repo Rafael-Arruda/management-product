@@ -30,17 +30,21 @@ const getServiceType = async () => {
 
 const deleteServiceType = async (id) => {
     try {
-        // const response = await api.get("/service");
-        const response = {};
-        return response;
+        await api.delete(`/servicoTipo/${id}`)
+        return true
     } catch (error) {
         console.error("Erro ao buscar:", error);
     }
 };
 const saveServiceType = async (obj) => {
     try {
-        // const response = await api.get("/service");
-        const success = false;
+        console.log(obj)
+        const response = await api.post("/servicoTipo", obj, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+        const success = true;
         return success;
     } catch (error) {
         console.error("Erro ao buscar:", error);

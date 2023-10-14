@@ -12,12 +12,12 @@ import { saveServiceType } from "../../../../services/serviceType";
 import { FormGroup } from "./style";
 
 const schema = yup.object().shape({
-  val_servico_tipo_stp: yup.number().required().positive().integer(),
+  vlr_servico_tipo_stp: yup.number().required().positive().integer(),
   des_servico_tipo_stp: yup.string().min(10).required(),
 });
 
 
-export default function TipoServiceForm({ reg, onClose, visible }) {
+export default function TipoServiceForm({ reg, onClose, visible, refresh }) {
 
   const [form, setForm] = useState(reg ?? {});
   const [error, setError] = useState({});
@@ -39,10 +39,11 @@ export default function TipoServiceForm({ reg, onClose, visible }) {
         console.log(JSON.stringify(form));
         const success = await saveServiceType(form);
         if(success){
+          await refresh();
           toast.success("Serviço salvo!");
         } else {
 
-          toast.error("aaaa!");
+          toast.error("Erro ao Cadastrar!");
         }
 
         setError({});
@@ -62,7 +63,7 @@ export default function TipoServiceForm({ reg, onClose, visible }) {
 
 
   return (
-    <Modal title={form.id_servico_ser ? "Edição" : "Cadastro"} onClose={onClose} visible={visible} >
+    <Modal title={form.id_servico_tipo_stp ? "Edição" : "Cadastro"} onClose={onClose} visible={visible} >
       <FormGroup>
         <label>Descrição</label>
         <Input
@@ -78,10 +79,10 @@ export default function TipoServiceForm({ reg, onClose, visible }) {
         <label>Valor</label>
         <Input
           type={'number'}
-          defaultValue={form?.val_servico_tipo_stp ?? ''}
-          name='val_servico_tipo_stp'
+          defaultValue={form?.vlr_servico_tipo_stp ?? ''}
+          name='vlr_servico_tipo_stp'
           onChange={handleChangeValue}
-          error={error?.val_servico_tipo_stp ?? false}
+          error={error?.vlr_servico_tipo_stp ?? false}
         />
       </FormGroup>
 
