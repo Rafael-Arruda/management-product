@@ -61,7 +61,8 @@ const getBaixas = async (tipoMovimentacao) => {
         // ]};
         return response.data;
     } catch (error) {
-        console.error("Erro ao buscar:", error);
+        // console.error("Erro ao buscar:", error);
+        return [];
     }
 };
 const deleteBaixa = async (id) => {

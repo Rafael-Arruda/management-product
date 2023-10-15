@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 //Pages
 import Agendamento from '../pages/Agendamento';
+import AgendamentoCalendario from '../pages/Agendamento/calendario';
 import Baixa from '../pages/Almoxarifado/Material';
 import Estoque from '../pages/CadastroBase/Almoxarifado/Estoque';
 import Material from '../pages/CadastroBase/Almoxarifado/Material';
@@ -51,6 +52,7 @@ function RoutesApp() {
             <Route path="*" element={<Page404 />} />
             <Route path="/agendamento" >
                 <Route path="/agendamento/:empresa" element={<Agendamento />} />
+                <Route path="/agendamento/:empresa/calendario" element={<AgendamentoCalendario />} />
                 
                 <Route path="/agendamento" element={<Page404 />} />
                 <Route path="*" element={<Page404 />} />

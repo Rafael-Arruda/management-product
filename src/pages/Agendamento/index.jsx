@@ -5,15 +5,15 @@ import { useEffect, useState } from "react";
 
 
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getInfoEmpresa, getServiceType } from "../../services/agendamento";
-import { Button, ButtonItemFooterCard, CenterFullScreen, Conteiner, Content, ContentHeaderCard, FooterCard, H1, Header, HeaderBlock, HeaderCard, ImageHeaderCard, ItemFooterCard, Loading, Logo, Parag, ServiceCard, SocialMediaBlock, TextHeaderCard, TimeItemFooterCard, TitleHeaderCard, ValueItemFooterCard } from "./style";
+import { Button, ButtonNext, CenterFullScreen, Conteiner, Content, Footer, H1, Header, HeaderBlock, Loading, Logo, Parag, SocialMediaBlock } from "./style";
 
 
-import corte_example from '../../assets/corte_example.jpeg';
 import socialFacebook from '../../assets/social_facebook.png';
 import socialInstagram from '../../assets/social_instagram.png';
 import socialWhatsapp from '../../assets/social_whatsapp.png';
+import Card from "./card";
 export default function Agendamento() {
 
     const [form, setForm] = useState({});
@@ -22,12 +22,36 @@ export default function Agendamento() {
 
     const { empresa } = useParams();
 
+    const navigate = useNavigate();
+
+    const handleNext = () => {
+        navigate(`/agendamento/${empresa}/calendario`, { state:{form,formData} });
+    }
+
+    const handleSelect = (obj) => {
+        const factory = {serviceType:[]};
+        const newForm = {...factory,...form};
+        const exists = newForm.serviceType.find((reg)=> (reg.id_servico_tipo_stp == obj.id_servico_tipo_stp));
+        if(exists){
+            return;
+        }
+        newForm.serviceType.push(obj);
+        setForm(newForm);
+    }
+    const handleRemove = (obj) => {
+        const factory = {serviceType:[]};
+        const newForm = {...factory,...form};
+        newForm.serviceType = newForm.serviceType.filter((reg)=> (reg.id_servico_tipo_stp != obj.id_servico_tipo_stp));
+        setForm(newForm);
+    }
+
 
     // Chamada da API - Lista todos os materiais
     useEffect(() => {
 
         const fetchData = async () => {
             try {
+                await (new Promise((resolve) => setTimeout(resolve, 1000)))
                 Promise.all([getServiceType(empresa), getInfoEmpresa(empresa)])
                 .then(([serviceType, entrepriseInfo]) => {
                     setFormData((prev)=>({serviceType, entrepriseInfo}));
@@ -39,8 +63,8 @@ export default function Agendamento() {
         fetchData();
     }, []);
 
-    console.log('empresa',empresa);
-    console.log(formData);
+    console.log('#######',form);
+
 
     if(!formData.entrepriseInfo){
         return <CenterFullScreen><Loading/></CenterFullScreen>;
@@ -66,124 +90,15 @@ export default function Agendamento() {
                 </HeaderBlock>
             </Header>
             <Content>
-                <ServiceCard>
-                    <HeaderCard>
-                        <ImageHeaderCard imageUrl={corte_example}/>
-                        {/* <img src={corte_example} width={64}/> */}
-                        <ContentHeaderCard>
-                            <TitleHeaderCard>Corte</TitleHeaderCard>
-                            <TextHeaderCard>Sem obs </TextHeaderCard>
-                        </ContentHeaderCard>
-                    </HeaderCard>
-                    <FooterCard>
-                        <ItemFooterCard><TimeItemFooterCard>30min</TimeItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ValueItemFooterCard>R$ 30,00</ValueItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ButtonItemFooterCard>+</ButtonItemFooterCard></ItemFooterCard>
-                    </FooterCard>
-                </ServiceCard>
-
+                {
+                    formData.serviceType.map(service => (<Card key={service.id_servico_tipo_stp} obj={service} handleSelect={handleSelect} handleRemove={handleRemove}/>))
+                }
                 
-                <ServiceCard>
-                    <HeaderCard>
-                        <ImageHeaderCard imageUrl={corte_example}/>
-                        {/* <img src={corte_example} width={64}/> */}
-                        <ContentHeaderCard>
-                            <TitleHeaderCard>Corte</TitleHeaderCard>
-                            <TextHeaderCard>Sem obs </TextHeaderCard>
-                        </ContentHeaderCard>
-                    </HeaderCard>
-                    <FooterCard>
-                        <ItemFooterCard><TimeItemFooterCard>30min</TimeItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ValueItemFooterCard>R$ 30,00</ValueItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ButtonItemFooterCard>+</ButtonItemFooterCard></ItemFooterCard>
-                    </FooterCard>
-                </ServiceCard>
-
-                <ServiceCard>
-                    <HeaderCard>
-                        <ImageHeaderCard imageUrl={corte_example}/>
-                        {/* <img src={corte_example} width={64}/> */}
-                        <ContentHeaderCard>
-                            <TitleHeaderCard>Corte</TitleHeaderCard>
-                            <TextHeaderCard>Sem obs </TextHeaderCard>
-                        </ContentHeaderCard>
-                    </HeaderCard>
-                    <FooterCard>
-                        <ItemFooterCard><TimeItemFooterCard>30min</TimeItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ValueItemFooterCard>R$ 30,00</ValueItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ButtonItemFooterCard>+</ButtonItemFooterCard></ItemFooterCard>
-                    </FooterCard>
-                </ServiceCard>
-
-                <ServiceCard>
-                    <HeaderCard>
-                        <ImageHeaderCard imageUrl={corte_example}/>
-                        {/* <img src={corte_example} width={64}/> */}
-                        <ContentHeaderCard>
-                            <TitleHeaderCard>Corte</TitleHeaderCard>
-                            <TextHeaderCard>Sem obs </TextHeaderCard>
-                        </ContentHeaderCard>
-                    </HeaderCard>
-                    <FooterCard>
-                        <ItemFooterCard><TimeItemFooterCard>30min</TimeItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ValueItemFooterCard>R$ 30,00</ValueItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ButtonItemFooterCard>+</ButtonItemFooterCard></ItemFooterCard>
-                    </FooterCard>
-                </ServiceCard>
-
-
-                <ServiceCard>
-                    <HeaderCard>
-                        <ImageHeaderCard imageUrl={corte_example}/>
-                        {/* <img src={corte_example} width={64}/> */}
-                        <ContentHeaderCard>
-                            <TitleHeaderCard>Corte</TitleHeaderCard>
-                            <TextHeaderCard>Sem obs </TextHeaderCard>
-                        </ContentHeaderCard>
-                    </HeaderCard>
-                    <FooterCard>
-                        <ItemFooterCard><TimeItemFooterCard>30min</TimeItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ValueItemFooterCard>R$ 30,00</ValueItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ButtonItemFooterCard>+</ButtonItemFooterCard></ItemFooterCard>
-                    </FooterCard>
-                </ServiceCard>
-
-
-                <ServiceCard>
-                    <HeaderCard>
-                        <ImageHeaderCard imageUrl={corte_example}/>
-                        {/* <img src={corte_example} width={64}/> */}
-                        <ContentHeaderCard>
-                            <TitleHeaderCard>Corte</TitleHeaderCard>
-                            <TextHeaderCard>Sem obs </TextHeaderCard>
-                        </ContentHeaderCard>
-                    </HeaderCard>
-                    <FooterCard>
-                        <ItemFooterCard><TimeItemFooterCard>30min</TimeItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ValueItemFooterCard>R$ 30,00</ValueItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ButtonItemFooterCard>+</ButtonItemFooterCard></ItemFooterCard>
-                    </FooterCard>
-                </ServiceCard>
-
-
-                <ServiceCard>
-                    <HeaderCard>
-                        <ImageHeaderCard imageUrl={corte_example}/>
-                        {/* <img src={corte_example} width={64}/> */}
-                        <ContentHeaderCard>
-                            <TitleHeaderCard>Corte</TitleHeaderCard>
-                            <TextHeaderCard>Sem obs </TextHeaderCard>
-                        </ContentHeaderCard>
-                    </HeaderCard>
-                    <FooterCard>
-                        <ItemFooterCard><TimeItemFooterCard>30min</TimeItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ValueItemFooterCard>R$ 30,00</ValueItemFooterCard></ItemFooterCard>
-                        <ItemFooterCard><ButtonItemFooterCard>+</ButtonItemFooterCard></ItemFooterCard>
-                    </FooterCard>
-                </ServiceCard>
-
-
             </Content>
+            {
+                form.serviceType && form.serviceType.length > 0 && <Footer><ButtonNext onClick={handleNext}>Próximo</ButtonNext></Footer>
+            }
+            
         </Conteiner>
     )
 }

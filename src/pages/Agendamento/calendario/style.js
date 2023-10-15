@@ -16,7 +16,8 @@ const rotate = keyframes`
 export const CenterFullScreen = styled.div`
   display: flex;
   flex:1;
-  height: 100dvh;
+  height: 50dvh;
+  width: 100dvw;
   justify-content: center;
   align-items: center;
 `;
@@ -24,6 +25,16 @@ export const CenterFullScreen = styled.div`
 export const Loading = styled.div`
   width: 15dvw;
   height: 15dvw;
+  border: 3px solid var(--primary-bg-border);
+  border-top: 3px solid transparent; /* Cor vermelha para o topo do círculo */
+  border-bottom: 3px solid transparent;
+  border-radius: 50%;
+  margin-bottom: 0%;
+  animation: ${rotate} 1.0s linear infinite; /* Aplica a animação */
+`;
+export const LoadingHour = styled.div`
+  width: 32px;
+  height: 32px;
   border: 3px solid var(--primary-bg-border);
   border-top: 3px solid transparent; /* Cor vermelha para o topo do círculo */
   border-bottom: 3px solid transparent;
@@ -162,8 +173,7 @@ export const SocialMediaBlock = styled.div`
   }
   @media (max-width: 600px) {
     /* Estilos específicos para telas menores (modo mobile) */
-    
-  width: 50%;
+    width: 50%;
     justify-content: space-around;
   }
 `;
@@ -176,10 +186,14 @@ export const Content = styled.div`
   margin-right: 8px;
   margin-bottom: 120px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: 200px;
-  min-height: calc(100dvh - var(--header-height));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  /* grid-auto-rows: 200px; */
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+  /* min-height: calc(100dvh - var(--header-height)); */
   gap: 8px;
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
 `;
 
 
@@ -191,6 +205,7 @@ export const ServiceCard = styled.div`
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   gap: 2px;
+  min-height: 200px;
 `;
 
 export const HeaderCard = styled.div`
@@ -198,7 +213,7 @@ export const HeaderCard = styled.div`
   display: flex;
   flex-direction: row;
   gap:8px;
-  height: 150px;
+  height: 100%;
 `;
 export const ContentHeaderCard = styled.div`
   display: flex;
@@ -216,13 +231,43 @@ export const TextHeaderCard = styled.span`
   overflow: hidden;
 `;
 export const ImageHeaderCard = styled.div`
-  width: 100px;
+  width: 150px;
   height: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-image: ${(props) => `url('${props.imageUrl}')`};
 `;
+export const GridHeaderCard = styled.div`
+  padding: 8px 4px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+  grid-auto-rows: 32px;
+  gap: 8px;
+`;
+
+export const Horario = styled.button`
+  background-color: var(--yellow);
+  color: var(--gray-dark);
+  font-weight: 600;
+  width: 52px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0.9;
+
+  box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
+  &:disabled{
+    opacity: 0.4;
+    cursor: default;
+  }
+  &:hover:not(:disabled){
+    opacity: 1;
+  }
+`;
+
+
 export const FooterCard = styled.div`
   display: grid;
   grid-template-columns: 100px 1fr 60px;
@@ -261,4 +306,41 @@ export const ButtonItemFooterCard = styled.button`
     background-color: var(--yellow);
     color: var(--gray-dark);
   }
+`;
+
+
+export const Body = styled.div`
+  margin: 16px 8px;
+`;
+
+export const CalendarBox = styled.div`
+  display: flex;
+  width: 100dvw;
+  justify-content: center;
+  text-align: center;
+  line-height: 32px;
+  gap:8px;
+  & h2 {
+    font-size: 1.4em;
+  }
+  & input{
+    font-size: 1.4em;
+    padding: 5px 8px;
+    height: 32px;
+    width: 140px;
+    border: 1px solid ${props => props.error ? "#f00" : "#ccc"};
+    border-radius: 4px;
+    text-align: "center";
+  }
+
+`;
+
+
+export const Center = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 `;
