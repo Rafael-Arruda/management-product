@@ -7,33 +7,54 @@ const getCliente = async () => {
         const response = await api.get("/cliente");
         // const response = [
         //     {
-        //         id_servico_ser: 1,
-        //         des_servico_ser: 'teste 1',
-        //         txt_servico_ser: 'obs do servico',
-        //         vlr_servico_ser: 12.50,
-        //         created_at: '2023-09-28 20:50'
+        //         id_cliente_cli:1,
+        //         desc_metodo_pagamento_tmp:'Pix',
+        //         created_at:'2023-01-01',
+        //         updated_at:'2023-01-01'
         //     },
         //     {
-        //         id_servico_ser: 2,
-        //         des_servico_ser: 'teste 2',
-        //         txt_servico_ser: 'obs do servico2',
-        //         vlr_servico_ser: 11.50,
-        //         created_at: '2023-09-28 21:50'
-        //     }
+        //         id_cliente_cli:2,
+        //         desc_metodo_pagamento_tmp:'Dinheiro',
+        //         created_at:'2023-01-01',
+        //         updated_at:'2023-01-01'
+        //     },
         // ];
         return response.data;
     } catch (error) {
         console.error("Erro ao buscar:", error);
     }
 };
-const saveCliente = async (obj) => {
+
+const deleteCliente = async (id) => {
     try {
-        // const response = await api.get("/service");
-        const response = await api.post("/cliente", obj);
-        return response;
+        await api.delete(`/cliente/${id}`)
+        return true
     } catch (error) {
         console.error("Erro ao buscar:", error);
     }
 };
+const saveCliente = async (obj) => {
+    try {
+        if(obj.id_cliente_cli){
+            await api.put(`/cliente/${obj.id_cliente_cli}`, obj, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        }else{
+            await api.post("/cliente", obj, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
+        return true;
+    } catch (error) {
+        console.error("Erro ao buscar:", error);
+        return false;
+    }
+};
 
-export { getCliente, saveCliente };
+
+export { deleteCliente, getCliente, saveCliente };
+
