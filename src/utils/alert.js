@@ -9,7 +9,7 @@ const confirmAlert = async ({title, text, icon='warning', handleFunction}) => {
         text: "O registro será inativado!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#d33',
+        confirmButtonColor: 'var(--primary-bg-color)',
         cancelButtonColor: '#666',
         confirmButtonText: 'Sim'
       }).then(async (result) => {

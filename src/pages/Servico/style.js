@@ -115,3 +115,9 @@ export const FormGroup = styled.div`
     font-size: 0.9rem;
   }
 `
+
+export const Expand = styled.div`
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+`

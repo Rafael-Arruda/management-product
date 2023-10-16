@@ -35,7 +35,7 @@ export default function EstoqueForm({ reg, onClose, visible }) {
     setTimeout(async () => {
       try {
         await schema.validate(form);
-        console.log(JSON.stringify(form));
+        // console.log(JSON.stringify(form));
         const success = await saveEstoque(form);
         if(success){
           toast.success("Registro salvo!");

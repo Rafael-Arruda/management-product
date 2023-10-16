@@ -1,5 +1,5 @@
-import { useState, createContext, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 
 import { toast } from 'react-toastify';
@@ -66,7 +66,7 @@ function AuthProvider({children}) {
             
             storageUser(value.data.user);
             storageUserMenu(value.data.menu);
-            console.log(value.data.menu);
+            // console.log(value.data.menu);
             
             toast.success('Seja bem vindo, ' + value.data.user.name + "!");
             setLoadingAuth(false);

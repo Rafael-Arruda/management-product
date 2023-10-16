@@ -25,11 +25,6 @@ export default function ServiceTable({ data = [], handleEdit }) {
       sortable: true,
     },
     {
-      name: "Descrição",
-      selector: ({ des_servico_ser }) => `${des_servico_ser}`,
-      sortable: true,
-    },
-    {
       name: "Observação",
       selector: ({ txt_servico_ser }) => `${txt_servico_ser}`,
       sortable: true,
@@ -38,7 +33,7 @@ export default function ServiceTable({ data = [], handleEdit }) {
       name: "Valor",
       selector: ({ vlr_servico_ser }) => `${vlr_servico_ser}`,
       sortable: true,
-      cell: (row) => `R$ ${(0.111).toFixed(2)}`
+      cell: (row) => `R$ ${parseFloat(row.vlr_servico_ser).toFixed(2)}`
     },
     {
       name: "Data de Cadastro",

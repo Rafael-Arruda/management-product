@@ -1,16 +1,19 @@
 import React from "react";
 
 import Table from "../../../../components/Table";
-import { deleteServiceType } from "../../../../services/serviceType";
 import { formatDate } from "../../../../utils/dateHelper";
 import { Button } from './style';
+import { deleteServiceType } from "../../../../services/serviceType";
+import { confirmAlert } from "../../../../utils/alert";
 
-
-// eslint-disable-next-line react/prop-types
-export default function TipoServiceTable({ data = [], handleEdit }) {
+export default function TipoServiceTable({ data = [], handleEdit, refresh }) {
 
   const handleDelete = async (id) => {
-    await deleteServiceType(id);
+    confirmAlert({
+      title: 'Tem certeza disso?',
+      text: "O registro será inativado!",
+      handleFunction: async () => {await deleteServiceType(id); await refresh();}
+    })
   }
 
   const columns = [
@@ -35,9 +38,9 @@ export default function TipoServiceTable({ data = [], handleEdit }) {
     },
     {
       name: "Valor",
-      selector: ({ val_servico_tipo_stp }) => `${val_servico_tipo_stp}`,
+      selector: ({ vlr_servico_tipo_stp }) => `${vlr_servico_tipo_stp}`,
       sortable: true,
-      cell: (row) => (`R$ ${parseFloat(row.val_servico_tipo_stp).toFixed(2)}`)
+      cell: (row) => (`R$ ${parseFloat(row.vlr_servico_tipo_stp).toFixed(2)}`)
     },
     {
       name: "Data de Cadastro",

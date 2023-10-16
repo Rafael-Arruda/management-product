@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    padding: 0px 30px;
 `;
 
 export const ModalContainer = styled.div`
@@ -24,30 +23,17 @@ export const ModalContent = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 500px;
-  height: auto;
-`;
-export const ModalScroll = styled.div`
-  overflow-y: auto !important;
-  overflow-x: hidden;
-  max-height: 85dvh;
+  height: 250px;
 `;
 
 export const ModalHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     button{
-      border: none;
-      background-color: transparent;
-      font-weight: bold;
-      padding: 5px;
-      border-radius: 3px;
-      color: #333;
-    }
-    button:hover{
-      transition: all 0.2s ease-in-out;
-      transform: scale(140%);
+        border: none;
+        background: transparent;
+        font-weight: bold;
     }
 
 `
@@ -94,30 +80,38 @@ export const ButtonClose = styled.button`
 export const DeviderHorizontal = styled.div`
     height: 1px;
     width: 100%;
-    margin: 12px 0;
     background-color: var(--border-color);
 `
 
 // Tabela
-// Defina um componente de estilo para a tabela
 export const StyledTable = styled.table`
   width: 100%;
-  border-collapse: collapse;
-  border: 1px solid #ddd;
+  background-color: #FFF;
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.1);
+  padding: 12px 4px;
+  display: flex;
+  flex-direction: column;
 `;
 
-export const TableHeader = styled.th`
-  background-color: #f2f2f2;
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-`;
-
-export const TableCell = styled.td`
-  border: 1px solid #ddd;
-  text-align: center;
-  padding: 8px;
-  width: 25%;
-`;
+export const FilterTable = styled.input`
+  align-self: flex-end;
+  margin-right: 16px;
+  border-radius: 4px;
+  height: 32px;
+  width: 20dvw;
+  border:1px solid rgba(0,0,0,0.4);
+  padding: 0 10px;
+`
 
 
+
+export const FormGroup = styled.div`
+  margin: 4px 0px;
+  display: flex;
+  flex-direction: column;
+  & label {
+    color: #666;
+    font-size: 0.9rem;
+  }
+`
