@@ -13,6 +13,7 @@ import Cargo from '../pages/CadastroBase/Perfil/Cargo';
 import MetodoPagamento from '../pages/CadastroBase/Financeiro/MetodoPagamento';
 import InstituicaoPagamento from '../pages/CadastroBase/Financeiro/InstituicaoPagamento';
 import CentroCusto from '../pages/CadastroBase/Perfil/CentroCusto';
+import Usuario from '../pages/CadastroBase/Perfil/Usuario';
 import ListIcons from '../pages/Debug/ListIcons';
 import Page404 from '../pages/ErrorPage/404';
 import Layout from '../pages/Layout';
@@ -36,6 +37,8 @@ function RoutesApp() {
                 <Route path="/cadastro-base/financeiro/instituicao-pagamento" element={<InstituicaoPagamento />} />
                 <Route path="/cadastro-base/perfil/centro-custo" element={<CentroCusto />} />
                 <Route path="/cadastro-base/perfil/cargo" element={<Cargo />} />
+                <Route path="/cadastro-base/perfil/usuario" element={<Usuario />} />
+
             </Route>
 
             <Route path="/login" element={<Login />} />

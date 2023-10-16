@@ -36,7 +36,7 @@ export default function Menu({ menu }) {
             }
 
             {showMenu && menu.children && menu.children.map((item, index) => (
-                <SubMenu key={index} submenu={item} />
+                <SubMenu key={index} title={menu.des_menu_mnu} submenu={item} />
             ))}
         </Container>
     )
