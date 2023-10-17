@@ -6,12 +6,16 @@ import RoutesApp from "./routes";
 
 import { BrowserRouter } from 'react-router-dom';
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Boundary from "./pages/ErrorPage/Boundary";
 
+const queryClient = new QueryClient()
+
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Boundary>
         <ToastContainer autoClose={3000} />
@@ -23,6 +27,7 @@ function App() {
         </PaginationProvider>
       </Boundary>
     </BrowserRouter>
+    </QueryClientProvider>
   )
 }
 export default App

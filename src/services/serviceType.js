@@ -1,7 +1,15 @@
 
+import { useQuery } from "@tanstack/react-query";
 import api from "./api";
 
-
+const GetServiceTypeQuery = () => {
+    return useQuery({
+            queryKey: ['getServiceType'],
+            queryFn: getServiceType,
+            staleTime: 1 * 10 * 1000
+        });
+  };
+  
 const getServiceType = async () => {
     try {
         const response = await api.get("/servicoTipo");
@@ -52,5 +60,5 @@ const saveServiceType = async (obj) => {
 };
 
 
-export { deleteServiceType, getServiceType, saveServiceType };
+export { GetServiceTypeQuery, deleteServiceType, getServiceType, saveServiceType };
 
